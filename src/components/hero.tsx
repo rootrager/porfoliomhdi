@@ -1,20 +1,13 @@
 import { MovingBorderLink } from "./moving-border";
+import { HeroVideo } from "./hero-video";
 
 export function Hero() {
   return (
     <section className="relative min-h-[calc(100dvh-4rem)] overflow-hidden bg-black text-white">
-      <video
-        className="absolute inset-0 h-full w-full object-cover bg-[url('/images/hero-poster-mobile.webp')] bg-cover bg-center md:bg-[url('/images/hero-poster-desktop.webp')]"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
-      >
+      <HeroVideo className="absolute inset-0 h-full w-full object-cover bg-[url('/images/hero-poster-mobile.webp')] bg-cover bg-center md:bg-[url('/images/hero-poster-desktop.webp')]">
         <source src="/videos/desktop.mp4" media="(min-width: 768px)" type="video/mp4" />
         <source src="/videos/mobile.mp4" type="video/mp4" />
-      </video>
+      </HeroVideo>
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/70" />
       <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-4rem)] max-w-7xl items-center justify-center px-6 text-center">
         <div className="max-w-4xl">
