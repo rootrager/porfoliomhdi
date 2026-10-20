@@ -1,20 +1,9 @@
-import Image from "next/image";
 import { Reveal } from "./reveal";
 import { WavyBackground } from "./wavy-background";
+import { ServiceCard, type ServiceCardData } from "./service-card";
 
-interface ServiceCard {
-  title: string;
-  badge: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-  tags: { label: string; bg: string; text: string }[];
-}
-
-// In RTL layout:
-// First in array (idx 0) displays on the Right in RTL, or we display from left to right:
-// Left: first.jpeg (Hacker/Cyber), Center: twe.jpeg (Retro Laptop), Right: three.jpeg (AI Hand/Chip)
-const cards: ServiceCard[] = [
+// In RTL layout the first array item is rendered on the right.
+const cards: ServiceCardData[] = [
   {
     badge: "سیستم‌های هوش مصنوعی و تراشه",
     title: "اتوماسیون و مدل‌های هوشمند",
@@ -22,10 +11,11 @@ const cards: ServiceCard[] = [
       "ایجاد ایجنت‌های هوشمند مستقل، پایپ‌لاین‌های پیشرفته با مدل‌های زبانی، اتصال ابزارها و اتوماسیون جریان‌های کاری واقعی.",
     image: "/images/three.jpeg",
     imageAlt: "هوش مصنوعی و اتوماسیون هوشمند",
+    gradient: ["#ff3838", "#7a1420"],
     tags: [
-      { label: "Python", bg: "bg-[#090b04]", text: "text-[#facc15]" },
-      { label: "AI Agents", bg: "bg-[#090b04]", text: "text-[#fb923c]" },
-      { label: "LLMs", bg: "bg-[#090b04]", text: "text-[#a78bfa]" },
+      { label: "Python", text: "text-[#facc15]" },
+      { label: "AI Agents", text: "text-[#fb923c]" },
+      { label: "LLMs", text: "text-[#a78bfa]" },
     ],
   },
   {
@@ -35,10 +25,11 @@ const cards: ServiceCard[] = [
       "سیستم‌های طراحی مقیاس‌پذیر، موشن‌های ظریف و تعاملی، استانداردهای سخت‌گیرانه دسترسی‌پذیری و رابط‌هایی که در یاد می‌مانند.",
     image: "/images/twe.jpeg",
     imageAlt: "طراحی محصول و دیزاین سیستم",
+    gradient: ["#ff758f", "#7a2140"],
     tags: [
-      { label: "Figma", bg: "bg-[#090b04]", text: "text-[#f43f5e]" },
-      { label: "Tailwind CSS", bg: "bg-[#090b04]", text: "text-[#38bdf8]" },
-      { label: "Motion", bg: "bg-[#090b04]", text: "text-[#ccff00]" },
+      { label: "Figma", text: "text-[#f43f5e]" },
+      { label: "Tailwind CSS", text: "text-[#38bdf8]" },
+      { label: "Motion", text: "text-[#ccff00]" },
     ],
   },
   {
@@ -48,10 +39,11 @@ const cards: ServiceCard[] = [
       "معماری مدرن سرتاسری با Next.js، رابط‌های کاربری ریسپانسیو و پرسرعت، سئو و کدهای تمیز و ساختاریافته.",
     image: "/images/first.jpeg",
     imageAlt: "توسعه فول استک و وب پیشرفته",
+    gradient: ["#4f7cff", "#1b2a5c"],
     tags: [
-      { label: "Next.js", bg: "bg-[#090b04]", text: "text-[#38bdf8]" },
-      { label: "TypeScript", bg: "bg-[#090b04]", text: "text-[#60a5fa]" },
-      { label: "React 19", bg: "bg-[#090b04]", text: "text-[#22d3ee]" },
+      { label: "Next.js", text: "text-[#38bdf8]" },
+      { label: "TypeScript", text: "text-[#60a5fa]" },
+      { label: "React 19", text: "text-[#22d3ee]" },
     ],
   },
 ];
@@ -77,58 +69,47 @@ export function WorkSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Section Heading */}
         <Reveal>
-          <div className="mb-14">
+          <div className="mb-14 flex items-center gap-4">
             <h2 className="font-display text-5xl tracking-normal text-white md:text-7xl lg:text-8xl">
               چه کارهایی انجام می‌دهم
             </h2>
-            <p className="mt-2 max-w-xl text-base font-medium leading-relaxed text-white/90 md:text-lg">
-              توسعه نرم‌افزار پیشرفته، سیستم‌های هوش مصنوعی مستقل و رابط‌های کاربری با هویت اصیل.
-            </p>
+            {/* Hand-drawn doodle arrow (same spirit as the reference design) */}
+            <svg
+              aria-hidden
+              viewBox="0 0 80 80"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="hidden h-14 w-14 shrink-0 text-[#ccff00] md:block"
+            >
+              <path
+                d="M62 10c-6 6-10 4-14 8s-2 10-8 12-10-2-14 2-2 12-6 16c-3 3-7 3-9 1"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              <path
+                d="M20 42c-3 3-4 7-4 10m4-10 8-1m-8 1 1 8"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
+          <p className="mt-2 max-w-xl text-base font-medium leading-relaxed text-white/90 md:text-lg">
+            توسعه نرم‌افزار پیشرفته، سیستم‌های هوش مصنوعی مستقل و رابط‌های کاربری با هویت اصیل.
+          </p>
         </Reveal>
 
-        {/* 3 Main Cards */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* 3 Main Cards — overlapping stack on large screens (like the reference) */}
+        <div className="grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-0">
           {cards.map((card, idx) => (
-            <Reveal key={card.badge} delay={idx * 0.1}>
-              <div className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-black/15 bg-[#0e1107] p-6 shadow-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-black/50">
-                {/* Visual Image Capsule */}
-                <div className="relative mb-6 h-56 w-full overflow-hidden rounded-[20px] border border-white/10 bg-black/60 shadow-inner">
-                  <Image
-                    src={card.image}
-                    alt={card.imageAlt}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e1107] via-transparent to-black/20" />
-                </div>
-
-                {/* Card Content */}
-                <div className="flex flex-1 flex-col">
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#ccff00]">
-                    {card.badge}
-                  </span>
-                  <h3 className="mt-2 font-display text-2xl text-white md:text-3xl">
-                    {card.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-300">
-                    {card.description}
-                  </p>
-
-                  {/* Software / Tech Badges */}
-                  <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-3">
-                    {card.tags.map((tag) => (
-                      <span
-                        key={tag.label}
-                        className={`inline-flex items-center rounded-md px-2.5 py-1 text-xs font-bold tracking-wider ${tag.bg} ${tag.text} border border-white/10`}
-                      >
-                        {tag.label}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            <Reveal
+              key={card.badge}
+              delay={idx * 0.1}
+              className="md:last:col-span-2 lg:last:col-span-1 lg:-ms-6 lg:first:ms-0"
+            >
+              <ServiceCard card={card} index={idx} />
             </Reveal>
           ))}
         </div>
