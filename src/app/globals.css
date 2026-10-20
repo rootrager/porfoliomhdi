@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #090b04;
+  --fg: #fafaf9;
+  --muted: #a1a1aa;
+  --line: #222810;
+  --accent: #ccff00;
+  --accent-fg: #090b04;
+  --surface: #121509;
+  --olive: #6e8000;
+  --olive-dark: #586600;
+  --lime: #ccff00;
+  --coral: #ff3b3b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #090b04;
+    --fg: #fafaf9;
+    --muted: #a1a1aa;
+    --line: #222810;
+    --accent: #ccff00;
+    --accent-fg: #090b04;
+    --surface: #121509;
+    --olive: #6e8000;
+    --olive-dark: #586600;
+    --lime: #ccff00;
+    --coral: #ff3b3b;
+  }
+}
+
+@keyframes capsuleMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes moving-border {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+.capsule-track {
+  animation: capsuleMarquee 16s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capsule-track {
+    animation: none;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-surface: var(--surface);
+  --color-olive: var(--olive);
+  --color-lime: var(--lime);
+  --color-coral: var(--coral);
+  --font-sans: var(--font-vazir), var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-jomhuria), var(--font-corgan), cursive, sans-serif;
+  --font-jomhuria: var(--font-jomhuria), cursive, sans-serif;
+  --font-persian: var(--font-vazir), sans-serif;
+  --font-orbitron: var(--font-orbitron), sans-serif;
+  --font-neopixel: var(--font-neopixel), monospace, sans-serif;
+  --animate-moving-border: moving-border var(--mb-duration, 4s) linear infinite;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-vazir), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
