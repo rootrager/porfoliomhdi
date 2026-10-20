@@ -119,8 +119,8 @@ export function WorkSection() {
           <div className="mt-16 flex justify-center">
             <div className="inline-flex flex-wrap items-center justify-center gap-8 rounded-full border border-black/20 bg-[#0e1107] px-8 py-4 shadow-xl md:gap-14 md:px-12 md:py-5">
               <div className="text-center">
-                <span className="font-display text-4xl font-normal text-white md:text-5xl">
-                  +۱۰۰
+                <span dir="ltr" className="font-display text-4xl font-normal text-white md:text-5xl">
+                  +100
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#ccff00]">
                   راه‌حل و پروژه تحویل داده شده
@@ -130,8 +130,8 @@ export function WorkSection() {
               <div className="h-8 w-px bg-white/15" />
 
               <div className="text-center">
-                <span className="font-display text-4xl font-normal text-white md:text-5xl">
-                  +۲۰۰
+                <span dir="ltr" className="font-display text-4xl font-normal text-white md:text-5xl">
+                  +200
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#ccff00]">
                   کامیت و خروجی کد
@@ -141,8 +141,8 @@ export function WorkSection() {
               <div className="h-8 w-px bg-white/15" />
 
               <div className="text-center">
-                <span className="font-display text-4xl font-normal text-white md:text-5xl">
-                  +۴
+                <span dir="ltr" className="font-display text-4xl font-normal text-white md:text-5xl">
+                  +4
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#ccff00]">
                   معماری سیستم‌های اصلی
