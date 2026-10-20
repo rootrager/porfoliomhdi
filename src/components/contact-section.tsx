@@ -61,7 +61,7 @@ export function ContactSection() {
               <div className="flex justify-center">
                 <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[28px] bg-[#ff3838] p-4 shadow-xl">
                   <div className="flex h-full w-full items-end justify-center">
-                    <WhiteHairGlassesAvatar className="h-full w-full object-contain" />
+                    <WhiteHairGlassesAvatar idPrefix="contact-white" className="h-full w-full object-contain" />
                   </div>
 
                   {/* Corner Accent Badge */}

@@ -1,25 +1,31 @@
 import React from "react";
 
-export function RedHairAvatar({ className = "w-full h-full" }: { className?: string }) {
+export function RedHairAvatar({
+  className = "w-full h-full",
+  idPrefix = "redHair",
+}: {
+  className?: string;
+  idPrefix?: string;
+}) {
   return (
-    <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-label="Anime character with red hair">
+    <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-hidden="true" focusable="false">
       <defs>
-        <radialGradient id="redHairGlow" cx="50%" cy="50%" r="50%">
+        <radialGradient id={`${idPrefix}Glow`} cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#ff4545" />
           <stop offset="100%" stopColor="#d11111" />
         </radialGradient>
-        <linearGradient id="faceGrad" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`${idPrefix}Face`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#f8f4f0" />
           <stop offset="100%" stopColor="#e8e0d5" />
         </linearGradient>
       </defs>
       {/* Red hair back */}
-      <path d="M40 90C35 40 70 10 100 10C130 10 165 40 160 90C165 140 175 190 180 240H20C25 190 35 140 40 90Z" fill="url(#redHairGlow)" />
+      <path d="M40 90C35 40 70 10 100 10C130 10 165 40 160 90C165 140 175 190 180 240H20C25 190 35 140 40 90Z" fill={`url(#${idPrefix}Glow)`} />
       {/* Neck & Body */}
       <path d="M85 130H115V175H85V130Z" fill="#e8e0d5" />
       <path d="M60 175C60 175 75 170 100 170C125 170 140 175 140 175L150 240H50L60 175Z" fill="#0d0f07" />
       {/* Face */}
-      <path d="M65 80C65 60 78 50 100 50C122 50 135 60 135 80C135 105 120 135 100 135C80 135 65 105 65 80Z" fill="url(#faceGrad)" />
+      <path d="M65 80C65 60 78 50 100 50C122 50 135 60 135 80C135 105 120 135 100 135C80 135 65 105 65 80Z" fill={`url(#${idPrefix}Face)`} />
       {/* Blush */}
       <ellipse cx="78" cy="95" rx="8" ry="4" fill="#ff7070" opacity="0.4" />
       <ellipse cx="122" cy="95" rx="8" ry="4" fill="#ff7070" opacity="0.4" />
@@ -44,17 +50,23 @@ export function RedHairAvatar({ className = "w-full h-full" }: { className?: str
   );
 }
 
-export function WhiteHairGlassesAvatar({ className = "w-full h-full" }: { className?: string }) {
+export function WhiteHairGlassesAvatar({
+  className = "w-full h-full",
+  idPrefix = "whiteHair",
+}: {
+  className?: string;
+  idPrefix?: string;
+}) {
   return (
-    <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-label="Anime character with white hair and glasses">
+    <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="whiteHairGrad" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`${idPrefix}Grad`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#ffffff" />
           <stop offset="100%" stopColor="#f0ede6" />
         </linearGradient>
       </defs>
       {/* White Hair Base (Bob Cut) */}
-      <path d="M42 90C40 45 68 20 100 20C132 20 160 45 158 90C160 120 155 140 145 155C135 140 132 120 130 110C125 110 120 110 100 110C80 110 75 110 70 110C68 120 65 140 55 155C45 140 40 120 42 90Z" fill="url(#whiteHairGrad)" />
+      <path d="M42 90C40 45 68 20 100 20C132 20 160 45 158 90C160 120 155 140 145 155C135 140 132 120 130 110C125 110 120 110 100 110C80 110 75 110 70 110C68 120 65 140 55 155C45 140 40 120 42 90Z" fill={`url(#${idPrefix}Grad)`} />
       {/* Neck & Turtleneck */}
       <path d="M88 125H112V165H88V125Z" fill="#f5ede3" />
       <path d="M65 165C65 165 80 160 100 160C120 160 135 165 135 165L148 240H52L65 165Z" fill="#d62828" />
@@ -82,17 +94,23 @@ export function WhiteHairGlassesAvatar({ className = "w-full h-full" }: { classN
   );
 }
 
-export function PinkHairAvatar({ className = "w-full h-full" }: { className?: string }) {
+export function PinkHairAvatar({
+  className = "w-full h-full",
+  idPrefix = "pinkHair",
+}: {
+  className?: string;
+  idPrefix?: string;
+}) {
   return (
-    <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-label="Anime character with pink hair">
+    <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="pinkHair" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`${idPrefix}Grad`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#ffb3c6" />
           <stop offset="100%" stopColor="#ff758f" />
         </linearGradient>
       </defs>
       {/* Pink Hair Back */}
-      <path d="M46 88C44 42 70 18 100 18C130 18 156 42 154 88C156 125 145 160 135 180C125 155 120 120 115 110C100 110 85 110 85 110C80 120 75 155 65 180C55 160 44 125 46 88Z" fill="url(#pinkHair)" />
+      <path d="M46 88C44 42 70 18 100 18C130 18 156 42 154 88C156 125 145 160 135 180C125 155 120 120 115 110C100 110 85 110 85 110C80 120 75 155 65 180C55 160 44 125 46 88Z" fill={`url(#${idPrefix}Grad)`} />
       {/* Neck & Black Top */}
       <path d="M88 120H112V160H88V120Z" fill="#fceedb" />
       <path d="M68 160C68 160 82 156 100 156C118 156 132 160 132 160L144 240H56L68 160Z" fill="#0a0c04" />
@@ -115,17 +133,23 @@ export function PinkHairAvatar({ className = "w-full h-full" }: { className?: st
   );
 }
 
-export function DarkBlueHairAvatar({ className = "w-full h-full" }: { className?: string }) {
+export function DarkBlueHairAvatar({
+  className = "w-full h-full",
+  idPrefix = "darkHair",
+}: {
+  className?: string;
+  idPrefix?: string;
+}) {
   return (
-    <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-label="Anime character with dark blue hair">
+    <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="darkHair" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`${idPrefix}Grad`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#2b2d42" />
           <stop offset="100%" stopColor="#1a1c29" />
         </linearGradient>
       </defs>
       {/* Hair Back */}
-      <path d="M44 85C42 40 70 15 100 15C130 15 158 40 156 85C158 135 168 185 174 240H26C32 185 42 135 44 85Z" fill="url(#darkHair)" />
+      <path d="M44 85C42 40 70 15 100 15C130 15 158 40 156 85C158 135 168 185 174 240H26C32 185 42 135 44 85Z" fill={`url(#${idPrefix}Grad)`} />
       {/* Neck & Cyan/Teal Choker Collar */}
       <path d="M86 122H114V165H86V122Z" fill="#fbf0e4" />
       <path d="M86 138H114V146H86V138Z" fill="#00b4d8" />

@@ -19,7 +19,7 @@ export function ServicesSection() {
               <h2 className="font-display text-5xl tracking-normal text-white md:text-7xl lg:text-8xl">
                 سبک و رویکرد من
               </h2>
-              <SparkleStar className="h-8 w-8 animate-pulse text-[#ccff00]" />
+              <SparkleStar className="h-8 w-8 animate-pulse text-[#ccff00] motion-reduce:animate-none" />
             </div>
 
             <p className="max-w-md font-mono text-xs uppercase tracking-widest text-zinc-400 md:text-left">
@@ -39,7 +39,7 @@ export function ServicesSection() {
 
               <div className="group flex flex-1 flex-col items-center justify-between overflow-hidden rounded-[26px] bg-[#ccff00] p-6 text-[#090b04] shadow-xl md:flex-row md:px-10 md:py-8">
                 <div className="h-32 w-32 shrink-0 overflow-hidden md:h-40 md:w-40">
-                  <WhiteHairGlassesAvatar className="h-full w-full object-contain" />
+                  <WhiteHairGlassesAvatar idPrefix="services-white" className="h-full w-full object-contain" />
                 </div>
                 <div className="mt-4 max-w-2xl text-center md:mt-0 md:text-right">
                   <p className="font-display text-3xl leading-snug tracking-normal text-[#090b04] md:text-5xl lg:text-6xl">
@@ -59,7 +59,7 @@ export function ServicesSection() {
             <Reveal delay={0.18} className="md:col-span-7">
               <div className="group flex h-full flex-col items-center justify-between overflow-hidden rounded-[26px] bg-[#ccff00] p-6 text-[#090b04] shadow-xl md:flex-row md:px-8 md:py-6">
                 <div className="h-28 w-28 shrink-0 overflow-hidden md:h-36 md:w-36">
-                  <PinkHairAvatar className="h-full w-full object-contain" />
+                  <PinkHairAvatar idPrefix="services-pink" className="h-full w-full object-contain" />
                 </div>
                 <div className="mt-3 flex-1 text-center md:mt-0 md:pr-6 md:text-right">
                   <p className="font-display text-3xl leading-snug tracking-normal text-[#090b04] md:text-4xl">
@@ -83,7 +83,7 @@ export function ServicesSection() {
                 {/* Halo & Red Avatar in Center */}
                 <div className="relative z-10 flex h-36 w-36 items-center justify-center">
                   <div className="absolute -top-3 h-10 w-24 rounded-full border-2 border-white/80 bg-white/10 blur-[1px]" />
-                  <RedHairAvatar className="h-full w-full object-contain" />
+                  <RedHairAvatar idPrefix="services-red" className="h-full w-full object-contain" />
                 </div>
               </div>
             </Reveal>
@@ -105,7 +105,7 @@ export function ServicesSection() {
                 {/* Character Eyes / Upper Face Crop Peek */}
                 <div className="mt-4 h-28 w-44 overflow-hidden rounded-xl border-2 border-[#090b04]/20 bg-[#161a0b] md:mt-0 md:h-32 md:w-56">
                   <div className="-mt-12 h-48 w-full">
-                    <DarkBlueHairAvatar className="h-full w-full object-cover" />
+                    <DarkBlueHairAvatar idPrefix="services-dark" className="h-full w-full object-cover" />
                   </div>
                 </div>
               </div>

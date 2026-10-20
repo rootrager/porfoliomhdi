@@ -58,7 +58,12 @@ export default function AboutPage() {
                 On Desktop: Full open layout
             */}
             <div className="w-full lg:col-span-7">
-              <div className="flex max-h-[54dvh] flex-col overflow-y-auto rounded-[24px] border border-white/10 bg-[#07080a]/80 p-5 shadow-2xl backdrop-blur-md [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-white/5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#ccff00]/40 md:max-h-[58dvh] md:p-8 lg:max-h-none lg:overflow-visible lg:p-12">
+              <div
+                role="region"
+                aria-label="داستان من"
+                tabIndex={0}
+                className="flex max-h-[54dvh] flex-col overflow-y-auto overscroll-contain rounded-[24px] border border-white/10 bg-[#07080a]/80 p-5 shadow-2xl backdrop-blur-md [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-white/5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#ccff00]/40 md:max-h-[58dvh] md:p-8 lg:max-h-none lg:overflow-visible lg:p-12"
+              >
                 {/* Header */}
                 <div className="border-b border-white/10 pb-4 text-center lg:text-right">
                   <span className="font-mono text-xs uppercase tracking-widest text-[#ccff00]">

@@ -1,11 +1,10 @@
-import Link from "next/link";
 import { MovingBorderLink } from "./moving-border";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100dvh] overflow-hidden bg-black text-white">
+    <section className="relative min-h-[calc(100dvh-4rem)] overflow-hidden bg-black text-white">
       <video
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover bg-[url('/images/hero-poster-mobile.webp')] bg-cover bg-center md:bg-[url('/images/hero-poster-desktop.webp')]"
         autoPlay
         muted
         loop
@@ -17,12 +16,18 @@ export function Hero() {
         <source src="/videos/mobile.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/70" />
-      <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-7xl items-center justify-center px-6 text-center">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-4rem)] max-w-7xl items-center justify-center px-6 text-center">
         <div className="max-w-4xl">
-          <p className="mb-6 font-neopixel text-xs uppercase tracking-[0.4em] text-[#ccff00]">
+          <p
+            dir="ltr"
+            lang="en"
+            className="mb-6 font-neopixel text-xs uppercase tracking-[0.4em] text-[#ccff00]"
+          >
             PERSONAL PORTFOLIO
           </p>
           <h1
+            dir="ltr"
+            lang="en"
             className="font-neopixel text-3xl font-normal uppercase leading-snug tracking-wider sm:text-4xl md:text-5xl lg:text-6xl"
             style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9)" }}
           >
@@ -68,7 +73,7 @@ export function Hero() {
           </span>
           {/* Cyber Capsule Pill */}
           <div className="relative flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/30 bg-black/40 p-1 shadow-[0_0_15px_rgba(204,255,0,0.15)] backdrop-blur-sm transition-colors group-hover:border-[#ccff00]">
-            <span className="h-2 w-1.5 animate-bounce rounded-full bg-[#ccff00] shadow-[0_0_8px_#ccff00]" />
+            <span className="h-2 w-1.5 animate-bounce rounded-full bg-[#ccff00] shadow-[0_0_8px_#ccff00] motion-reduce:animate-none" />
           </div>
         </a>
       </div>

@@ -56,7 +56,17 @@ function useCanvasLoop(ref: React.RefObject<HTMLCanvasElement | null>, build: Bu
       seen = e.isIntersecting;
       sync();
     });
-    const mo = new MutationObserver(setup);
+    // Style/class mutations are frequent (Next.js injects styles, fonts load, …),
+    // so the canvas is rebuilt on a debounce instead of on every single mutation.
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const schedule = () => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        timer = undefined;
+        setup();
+      }, 120);
+    };
+    const mo = new MutationObserver(schedule);
     ro.observe(el);
     io.observe(el);
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ["class", "style"] });
@@ -65,6 +75,7 @@ function useCanvasLoop(ref: React.RefObject<HTMLCanvasElement | null>, build: Bu
     mq.addEventListener("change", sync);
     return () => {
       cancelAnimationFrame(raf);
+      if (timer) clearTimeout(timer);
       ro.disconnect();
       io.disconnect();
       mo.disconnect();

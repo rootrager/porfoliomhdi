@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { List, X } from "@phosphor-icons/react";
 import { SparkleStar } from "./anime-avatars";
@@ -14,10 +14,32 @@ const links = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
+  // Escape key closes the menu, and the page behind it is not scrollable
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
   return (
     <header className="sticky top-0 z-50 border-b border-[#222810] bg-[#090b04]/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-2 font-display text-2xl font-bold tracking-wider text-white">
+        <Link
+          href="/"
+          onClick={() => setOpen(false)}
+          className="flex items-center gap-2 font-display text-2xl font-bold tracking-wider text-white"
+        >
           <SparkleStar className="h-5 w-5 text-[#ccff00]" />
           <span>مهدی</span>
         </Link>
@@ -40,8 +62,9 @@ export function SiteHeader() {
         </nav>
         <button
           type="button"
-          aria-label="باز کردن منو"
+          aria-label={open ? "بستن منو" : "باز کردن منو"}
           aria-expanded={open}
+          aria-controls="mobile-nav"
           className="rounded-md p-2 text-white md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
@@ -49,7 +72,10 @@ export function SiteHeader() {
         </button>
       </div>
       {open ? (
-        <nav className="border-t border-[#222810] bg-[#090b04] px-6 py-5 md:hidden">
+        <nav
+          id="mobile-nav"
+          className="border-t border-[#222810] bg-[#090b04] px-6 py-5 md:hidden"
+        >
           <div className="flex flex-col gap-4">
             {links.map((link) => (
               <Link
