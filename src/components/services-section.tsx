@@ -1,11 +1,6 @@
+import Image from "next/image";
 import { Reveal } from "./reveal";
-import {
-  SparkleStar,
-  WhiteHairGlassesAvatar,
-  PinkHairAvatar,
-  RedHairAvatar,
-  DarkBlueHairAvatar,
-} from "./anime-avatars";
+import { SparkleStar } from "./anime-avatars";
 import { ArrowDownLeft, ArrowDownRight } from "@phosphor-icons/react/ssr";
 import TopoBackground from "./topo-background";
 
@@ -51,8 +46,14 @@ export function ServicesSection() {
                 </div>
 
                 <div className="group flex flex-1 flex-col items-center justify-between overflow-hidden rounded-[26px] bg-[#ccff00] p-6 text-[#090b04] shadow-xl md:flex-row md:px-10 md:py-8">
-                  <div className="h-32 w-32 shrink-0 overflow-hidden md:h-40 md:w-40">
-                    <WhiteHairGlassesAvatar idPrefix="services-white" className="h-full w-full object-contain" />
+                  <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-2xl border-2 border-[#090b04]/20 shadow-lg md:h-40 md:w-40">
+                    <Image
+                      src="/images/art-dreamscape.webp"
+                      alt="آدمی روی تپه کنار موج‌های رنگین"
+                      fill
+                      sizes="(min-width: 768px) 160px, 128px"
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
                   </div>
                   <div className="mt-4 max-w-2xl text-center md:mt-0 md:text-right">
                     <p className="font-display text-3xl leading-snug tracking-normal text-[#090b04] md:text-5xl lg:text-6xl">
@@ -71,8 +72,14 @@ export function ServicesSection() {
               {/* Left Card: Quote with Pink Avatar */}
               <Reveal delay={0.18} className="md:col-span-7">
                 <div className="group flex h-full flex-col items-center justify-between overflow-hidden rounded-[26px] bg-[#ccff00] p-6 text-[#090b04] shadow-xl md:flex-row md:px-8 md:py-6">
-                  <div className="h-28 w-28 shrink-0 overflow-hidden md:h-36 md:w-36">
-                    <PinkHairAvatar idPrefix="services-pink" className="h-full w-full object-contain" />
+                  <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-2xl border-2 border-[#090b04]/20 shadow-lg md:h-36 md:w-36">
+                    <Image
+                      src="/images/art-run.webp"
+                      alt="سیلوئت درخشان روی پارچه‌های رنگین"
+                      fill
+                      sizes="(min-width: 768px) 144px, 112px"
+                      className="object-cover object-[50%_28%] transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
                   </div>
                   <div className="mt-3 flex-1 text-center md:mt-0 md:pr-6 md:text-right">
                     <p className="font-display text-3xl leading-snug tracking-normal text-[#090b04] md:text-4xl">
@@ -93,10 +100,15 @@ export function ServicesSection() {
                     <SparkleStar className="h-56 w-56 text-[#ccff00]" />
                   </div>
 
-                  {/* Halo & Red Avatar in Center */}
-                  <div className="relative z-10 flex h-36 w-36 items-center justify-center">
-                    <div className="absolute -top-3 h-10 w-24 rounded-full border-2 border-white/80 bg-white/10 blur-[1px]" />
-                    <RedHairAvatar idPrefix="services-red" className="h-full w-full object-contain" />
+                  {/* Artwork in the centre of the star burst */}
+                  <div className="relative z-10 h-36 w-36 overflow-hidden rounded-2xl border border-white/15 shadow-2xl">
+                    <Image
+                      src="/images/art-stereogram.webp"
+                      alt="پوستر ریترو کامپیوتر و آزمایشگاه استریوگرام"
+                      fill
+                      sizes="144px"
+                      className="object-cover object-top"
+                    />
                   </div>
                 </div>
               </Reveal>
@@ -115,11 +127,15 @@ export function ServicesSection() {
                     </p>
                   </div>
 
-                  {/* Character Eyes / Upper Face Crop Peek */}
-                  <div className="mt-4 h-28 w-44 overflow-hidden rounded-xl border-2 border-[#090b04]/20 bg-[#161a0b] md:mt-0 md:h-32 md:w-56">
-                    <div className="-mt-12 h-48 w-full">
-                      <DarkBlueHairAvatar idPrefix="services-dark" className="h-full w-full object-cover" />
-                    </div>
+                  {/* Retro poster crop */}
+                  <div className="relative mt-4 h-28 w-44 shrink-0 overflow-hidden rounded-xl border-2 border-[#090b04]/20 bg-[#161a0b] shadow-lg md:mt-0 md:h-32 md:w-56">
+                    <Image
+                      src="/images/art-design.webp"
+                      alt="پوستر ریترو با تایپوگرافی پیکسلی و کامپیوترهای قدیمی"
+                      fill
+                      sizes="(min-width: 768px) 224px, 176px"
+                      className="object-cover object-[50%_32%] transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
                   </div>
                 </div>
 
