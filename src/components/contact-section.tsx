@@ -1,6 +1,16 @@
+"use client";
+
 import { Reveal } from "./reveal";
-import { WhiteHairGlassesAvatar, BlossomWatermark } from "./anime-avatars";
-import { ArrowLeft, EnvelopeSimple } from "@phosphor-icons/react/ssr";
+import { 
+  PaperPlaneTilt, 
+  GithubLogo, 
+  EnvelopeSimple, 
+  Terminal, 
+  ArrowUpRight, 
+  CheckCircle,
+  ShieldCheck,
+  Radioactive
+} from "@phosphor-icons/react";
 
 export function ContactSection() {
   const year = new Date().getFullYear();
@@ -8,87 +18,174 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#708200] py-24 text-white md:py-32"
+      className="relative overflow-hidden bg-[#070903] py-24 text-white md:py-32 border-t border-[#1a220d]"
     >
-      <div className="relative z-10 mx-auto max-w-5xl px-6">
-        {/* Main Super-Card Container */}
+      {/* Background Glow */}
+      <div className="pointer-events-none absolute -bottom-48 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-[#ccff00]/10 blur-[120px]" />
+      
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        
         <Reveal>
-          <div className="overflow-hidden rounded-[36px] border border-black/20 bg-[#0e1107] p-8 shadow-2xl md:p-14">
-            <div className="grid items-center gap-10 md:grid-cols-2 lg:gap-14">
-              {/* Left Column: Info, Brand, CTA */}
-              <div className="flex flex-col">
-                <span className="font-mono text-xs uppercase tracking-widest text-[#ccff00]">
-                  ارتباط مستقیم / برآورد هزینه پروژه
+          {/* Main Cockpit Super-Card */}
+          <div className="overflow-hidden rounded-[36px] border border-[#243013] bg-[#0c1006]/95 p-8 shadow-[0_0_50px_rgba(0,0,0,0.8)] md:p-14 backdrop-blur-md">
+            
+            {/* Top Status Monospace Bar */}
+            <div 
+              dir="ltr"
+              className="flex flex-wrap items-center justify-between gap-3 border-b border-[#1c240f] pb-5 font-mono text-[11px] text-[#717e5d]"
+            >
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ccff00] opacity-75 motion-reduce:hidden" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#ccff00]" />
                 </span>
-                <h2 className="mt-3 font-display text-5xl tracking-normal text-white md:text-7xl lg:text-8xl">
-                  ثبت سفارش و شروع پروژه
-                </h2>
-                <p className="mt-2 text-base leading-relaxed text-zinc-300 md:text-lg">
-                  اگر به دنبال راه‌حلی منحصربه‌فرد، سیستم‌های هوش مصنوعی با کارایی بالا یا
-                  محصول وبی ساخته‌شده با ظرافت و وسواس هستید، من آماده‌ام چشم‌انداز شما را به یک واقعیت ملموس تبدیل کنم.
-                </p>
-
-                {/* Brand Emblem Pill */}
-                <div className="mt-6 inline-flex w-fit items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-2">
-                  <div className="text-[#ccff00]">
-                    <BlossomWatermark className="h-5 w-5" />
-                  </div>
-                  <span className="font-display text-2xl font-bold tracking-wider text-white">
-                    استودیو مهدی
-                  </span>
-                </div>
-
-                {/* Big Neon Lime CTA Button */}
-                <a
-                  href="mailto:hello@mhdi.dev"
-                  className="group mt-8 flex flex-col items-center justify-center rounded-[22px] bg-[#ccff00] p-5 text-center text-[#090b04] shadow-lg transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
-                >
-                  <span className="font-display text-2xl font-bold md:text-3xl">
-                    روی این دکمه کلیک کنید و درخواست‌تان را بفرستید
-                  </span>
-                  <span className="mt-1 flex items-center gap-1.5 font-mono text-sm font-bold tracking-wider text-[#090b04]/90">
-                    <EnvelopeSimple size={16} weight="bold" />
-                    hello@mhdi.dev
-                    <ArrowLeft size={16} weight="bold" className="transition-transform group-hover:-translate-x-1" />
-                  </span>
-                  <span className="mt-1 text-xs font-semibold text-[#090b04]/75">
-                    ایده و محصول شما شایسته زنده شدن و درخشیدن است.
-                  </span>
-                </a>
+                <span className="text-[#ccff00] font-bold">TRANSMISSION_READY</span>
+                <span>{'// ENCRYPTION: TLS 1.3'}</span>
               </div>
 
-              {/* Right Column: Red/Coral Portrait Container */}
-              <div className="flex justify-center">
-                <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[28px] bg-[#ff3838] p-4 shadow-xl">
-                  <div className="flex h-full w-full items-end justify-center">
-                    <WhiteHairGlassesAvatar idPrefix="contact-white" className="h-full w-full object-contain" />
-                  </div>
-
-                  {/* Corner Accent Badge */}
-                  <div className="absolute left-4 top-4 rounded-full bg-[#090b04]/80 px-3.5 py-1 text-xs font-mono font-bold text-white backdrop-blur">
-                    آماده پذیرش پروژه • فصل جاری
-                  </div>
-                </div>
+              <div className="flex items-center gap-3">
+                <span>VPS: YTA87400905</span>
+                <span className="text-[#263314]">{'//'}</span>
+                <span>PRODUCTION ACTIVE</span>
               </div>
             </div>
+
+            <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-14">
+              
+              {/* Left Column: Heading & Value Proposition (7 cols) */}
+              <div className="lg:col-span-7 flex flex-col justify-between" dir="rtl">
+                <div>
+                  <span className="font-mono text-xs uppercase tracking-widest text-[#ccff00]">
+                    [ ACT 05 // SECURE UPLINK ]
+                  </span>
+                  
+                  <h2 className="mt-3 font-display text-5xl tracking-normal text-white md:text-7xl lg:text-8xl">
+                    خط مستقیم ارتباط و شروع کار
+                  </h2>
+
+                  <p className="mt-4 font-persian text-base leading-relaxed text-[#c3c8ba] md:text-lg">
+                    بدون فرم‌های سازمانی طولانی و خسته‌کننده. اگر مسئله پیچیده‌ای داری که نیاز به حل در لایه صفر دارد، یا محصولی که می‌خواهی به دور از شعار و کلیشه به واقعیت تبدیل شود، پیام بگذار.
+                  </p>
+                </div>
+
+                {/* Direct Action Channels */}
+                <div className="mt-8 grid gap-3 sm:grid-cols-2" dir="ltr">
+                  
+                  {/* Telegram Card */}
+                  <a
+                    href="https://t.me/rootrager"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between rounded-2xl border border-[#232f12] bg-[#111709] p-4 transition-all duration-200 hover:border-[#ccff00] hover:bg-[#16200c]"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="rounded-xl bg-[#1c290e] p-2.5 text-[#ccff00] group-hover:scale-110 transition-transform">
+                        <PaperPlaneTilt className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="font-mono text-xs font-bold text-white">TELEGRAM DIRECT</div>
+                        <div className="font-mono text-[11px] text-[#7d8b69]">@rootrager // FAST</div>
+                      </div>
+                    </div>
+                    <ArrowUpRight className="h-4 w-4 text-[#7d8b69] group-hover:text-[#ccff00] transition-colors" />
+                  </a>
+
+                  {/* GitHub Card */}
+                  <a
+                    href="https://github.com/rootrager"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between rounded-2xl border border-[#232f12] bg-[#111709] p-4 transition-all duration-200 hover:border-[#ccff00] hover:bg-[#16200c]"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="rounded-xl bg-[#1c290e] p-2.5 text-[#ccff00] group-hover:scale-110 transition-transform">
+                        <GithubLogo className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="font-mono text-xs font-bold text-white">GITHUB PROFILE</div>
+                        <div className="font-mono text-[11px] text-[#7d8b69]">rootrager // REPOS</div>
+                      </div>
+                    </div>
+                    <ArrowUpRight className="h-4 w-4 text-[#7d8b69] group-hover:text-[#ccff00] transition-colors" />
+                  </a>
+
+                </div>
+              </div>
+
+              {/* Right Column: Terminal Live Response Box (5 cols) */}
+              <div className="lg:col-span-5 flex flex-col justify-center">
+                <div 
+                  dir="ltr"
+                  className="rounded-2xl border border-[#243013] bg-[#070a03] p-5 font-mono text-xs shadow-2xl text-[#a0ad8c]"
+                >
+                  <div className="flex items-center justify-between border-b border-[#18200d] pb-3 mb-4">
+                    <div className="flex items-center gap-1.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#f43f5e]/80" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#facc15]/80" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#22c55e]/80" />
+                    </div>
+                    <span className="text-[10px] text-[#556142]">bash - interactive session</span>
+                  </div>
+
+                  <div className="space-y-2 text-[11px]">
+                    <div className="text-[#ccff00]">
+                      $ curl -s https://mhdi.dev/api/status | jq .
+                    </div>
+                    <div className="text-white">
+                      &#123;
+                    </div>
+                    <div className="ps-4">
+                      &quot;status&quot;: <span className="text-[#ccff00]">&quot;OPEN_FOR_CONTRACTS&quot;</span>,
+                    </div>
+                    <div className="ps-4">
+                      &quot;location&quot;: &quot;Tehran // Remote Friendly&quot;,
+                    </div>
+                    <div className="ps-4">
+                      &quot;core_stack&quot;: [
+                    </div>
+                    <div className="ps-8 text-[#d4ff00]">
+                      &quot;Python 3.12&quot;, &quot;Next.js 16&quot;, &quot;Reverse Engineering&quot;, &quot;Multi-Agent RAG&quot;
+                    </div>
+                    <div className="ps-4">
+                      ],
+                    </div>
+                    <div className="ps-4">
+                      &quot;direct_dispatch&quot;: <span className="text-[#38bdf8]">&quot;hello@mhdi.dev&quot;</span>
+                    </div>
+                    <div className="text-white">
+                      &#125;
+                    </div>
+                  </div>
+
+                  <a
+                    href="mailto:hello@mhdi.dev"
+                    className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#ccff00] py-3 text-center font-mono text-xs font-bold text-[#090b04] transition-all hover:bg-[#d6ff33] active:scale-[0.98]"
+                  >
+                    <EnvelopeSimple className="h-4 w-4" />
+                    <span>DISPATCH EMAIL DIRECTLY</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
           </div>
         </Reveal>
 
         {/* Minimal Footer */}
-        <footer className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-black/15 pt-8 text-xs font-medium text-white/80 md:flex-row">
-          <p>© {year} استودیو مهدی. تمامی حقوق محفوظ است.</p>
-          <div className="flex items-center gap-6">
-            <a href="mailto:hello@mhdi.dev" className="hover:text-white transition-colors">
-              ارسال ایمیل
-            </a>
-            <a href="#work" className="hover:text-white transition-colors">
-              پروژه‌ها و خدمات
-            </a>
-            <a href="/about" className="hover:text-white transition-colors">
-              درباره من
-            </a>
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[#18200d] pt-6 font-mono text-[11px] text-[#6d795b] sm:flex-row">
+          <div>
+            © {year} MHDI. ALL RIGHTS RESERVED // BUILT TO OUTLAST
           </div>
-        </footer>
+          
+          <div className="flex items-center gap-6">
+            <a href="#work" className="hover:text-[#ccff00] transition-colors">PROJECTS</a>
+            <a href="#services" className="hover:text-[#ccff00] transition-colors">STORY</a>
+            <a href="https://github.com/rootrager" target="_blank" rel="noopener noreferrer" className="hover:text-[#ccff00] transition-colors">GITHUB</a>
+            <a href="https://t.me/rootrager" target="_blank" rel="noopener noreferrer" className="hover:text-[#ccff00] transition-colors">TELEGRAM</a>
+          </div>
+        </div>
+
       </div>
     </section>
   );
