@@ -1,19 +1,5 @@
-import { SiteHeader } from "@/components/site-header";
-import { Hero } from "@/components/hero";
-import { WorkSection } from "@/components/work-section";
-import { ServicesSection } from "@/components/services-section";
-import { ContactSection } from "@/components/contact-section";
+import { SplitPortal } from "@/components/split-portal";
 
 export default function Home() {
-  return (
-    <>
-      <SiteHeader />
-      <main>
-        <Hero />
-        <WorkSection />
-        <ServicesSection />
-        <ContactSection />
-      </main>
-    </>
-  );
+  return <SplitPortal />;
 }

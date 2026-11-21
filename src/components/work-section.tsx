@@ -1,79 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { Barbell, Cpu, GithubLogo, ShoppingCart, Subtitles } from "@phosphor-icons/react";
+import {
+  PROJECT_CATEGORIES,
+  PROJECTS,
+  type ProjectCategoryId,
+} from "@/content/site";
 import { Reveal } from "./reveal";
 import { WavyBackground } from "./wavy-background";
 
-interface ProjectItem {
-  index: string;
-  title: string;
-  faTitle: string;
-  category: string;
-  problem: string;
-  solution: string;
-  outcome: string;
-  stack: string[];
-  github?: string;
-  icon: typeof Cpu;
-}
-
-const PROJECTS: ProjectItem[] = [
-  {
-    index: "01",
-    title: "AURA Core-X Diagnostics",
-    faTitle: "تشخیص تقلب و کارشناسی سخت‌افزار آیفون",
-    category: "سخت‌افزار و iOS",
-    problem:
-      "توی بازار آیفون دست‌دوم، گوشی‌های پروگرام‌شده سلامت باتری رو ۱۰۰٪ نشون می‌دن و خروجی ابزارهایی مثل 3uTools هم برای آدم عادی گنگه و هم وابسته به کلوده.",
-    solution:
-      "یه سیستم آفلاین ساختم که مستقیم با USB به Lockdownd وصل می‌شه، دیتای خام BMS باتری رو می‌خونه و سریال قطعات داخلی رو با کارخونه تطبیق می‌ده.",
-    outcome: "کارشناسی ۱۰۰٪ آفلاین و مستقل",
-    stack: ["iOS Protocols", "Hardware Security", "FastAPI", "Gemma 3 Local"],
-    github: "https://github.com/rootrager/aura-corex-diagnostics",
-    icon: Cpu,
-  },
-  {
-    index: "02",
-    title: "DaniFone Commerce Engine",
-    faTitle: "موتور قیمت‌گذاری، حسابداری و انبار زنده",
-    category: "ایجنت هوشمند و فین‌تک",
-    problem:
-      "قیمت آیفون ثانیه‌ای با دلار بالا پایین می‌شه؛ چک کردن دستی صدها فیش واریزی و پیگیری انتقال مالکیت همتا هم پر از خطای انسانی و دردسر بود.",
-    solution:
-      "بینایی ماشین برای بررسی ظاهر گوشی، یه بات تلگرام OCR برای خوندن فیش‌های بانکی و یه داشبورد حسابداری سریع با شورتکات‌های کیبورد رو گذاشتم کنار هم.",
-    outcome: "بیش از ۸۳ دستگاه توی چرخه زنده",
-    stack: ["ReAct Agents", "Vision OCR", "SQLite WAL", "Next.js 16"],
-    github: "https://github.com/rootrager/danifon-pricing-engine",
-    icon: ShoppingCart,
-  },
-  {
-    index: "03",
-    title: "Shamloo AI Coach Copilot",
-    faTitle: "دستیار مربیگری ورزشی با دیتابیس برداری",
-    category: "RAG و تایید انسانی",
-    problem:
-      "برنامه تمرینی دادن به هوش مصنوعیِ خالی خطرناکه؛ اگه مدل توهم بزنه ممکنه به ورزشکار آسیب‌دیده ضرر بزنه. از اون طرف شاگردها هم مدام برنامه‌هاشون رو گم می‌کردن.",
-    solution:
-      "صدها برنامه واقعی مربی رو ریختم توی ChromaDB؛ بات توی تلگرام وضعیت شاگرد رو می‌گیره، با Pydantic سخت‌گیرانه چکش می‌کنه و بعد از تایید خود مربی، یه PDF مرتب تحویل می‌ده.",
-    outcome: "تایید نهایی با مربی، بدون توهم",
-    stack: ["ChromaDB RAG", "Telegram Bot API", "Pydantic V2", "WeasyPrint"],
-    icon: Barbell,
-  },
-  {
-    index: "04",
-    title: "SubFarsiPro & WebSubFarsi",
-    faTitle: "ساخت و ترجمه زیرنویس فارسی به‌صورت آفلاین",
-    category: "هوش مصنوعی آفلاین",
-    problem:
-      "ابزارهای زیرنویس یا اشتراک دلاری و اینترنت خوب می‌خوان، یا یه ترجمه خشک و کتابی و بی‌روح تحویل می‌دن که اصلاً شبیه حرف‌زدن ما نیست.",
-    solution:
-      "Whisper رو با مدل‌های زبانی محلی ترکیب کردم تا همه‌چیز ۱۰۰٪ آفلاین روی سیستم خود کاربر اجرا بشه و زیرنویس با لحن محاوره‌ای و طبیعی فارسی در بیاد.",
-    outcome: "اجرای کامل روی سیستم خودت",
-    stack: ["Whisper AI", "Local LLM", "Python / PyQt", "Motion"],
-    github: "https://github.com/rootrager/finalsubfarsi",
-    icon: Subtitles,
-  },
-];
+const PROJECT_ICONS = [Cpu, ShoppingCart, Barbell, Subtitles];
 
 const HIGHLIGHTS = [
   { value: "4", label: "پروژه واقعی و در حال استفاده" },
@@ -82,9 +19,16 @@ const HIGHLIGHTS = [
 ] as const;
 
 export function WorkSection() {
+  const [selectedCategory, setSelectedCategory] = useState<ProjectCategoryId>("all");
+
+  const filteredProjects =
+    selectedCategory === "all"
+      ? PROJECTS
+      : PROJECTS.filter((project) => project.categoryId === selectedCategory);
+
   return (
     <section
-      id="work"
+      id="projects"
       className="relative overflow-hidden border-t border-line bg-bg py-24 text-fg md:py-32"
     >
       <WavyBackground
@@ -113,15 +57,41 @@ export function WorkSection() {
           </div>
         </Reveal>
 
-        {/* Single-Elevation Project Grid (Zero Cards-in-Cards) */}
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {PROJECTS.map((project, idx) => {
-            const Icon = project.icon;
+        {/* Interactive Category Filter Tabs */}
+        <div
+          role="tablist"
+          aria-label="فیلتر پروژه‌ها"
+          className="mt-8 inline-flex flex-wrap items-center gap-1.5 rounded-xl border border-line bg-surface/90 p-1.5"
+        >
+          {PROJECT_CATEGORIES.map((category) => {
+            const isActive = selectedCategory === category.id;
             return (
-              <Reveal key={project.title} delay={idx * 0.08}>
+              <button
+                key={category.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`min-h-[40px] cursor-pointer whitespace-nowrap rounded-lg px-4 py-1.5 text-xs font-semibold transition-colors duration-150 sm:text-sm ${
+                  isActive
+                    ? "bg-accent text-accent-fg"
+                    : "text-fg-secondary hover:bg-surface-elevated hover:text-fg"
+                }`}
+              >
+                {category.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Single-Elevation Project Grid */}
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          {filteredProjects.map((project, idx) => {
+            const Icon = PROJECT_ICONS[Number(project.index) - 1] ?? Cpu;
+            return (
+              <Reveal key={project.title} delay={idx * 0.06}>
                 <article className="group flex h-full flex-col justify-between rounded-2xl border border-line bg-surface/90 p-6 backdrop-blur-md transition-colors duration-200 hover:border-line-strong md:p-8">
                   <div>
-                    {/* Clean Metadata Top Row */}
                     <div className="flex items-center justify-between gap-4 border-b border-line pb-4">
                       <div className="flex items-center gap-3 text-xs text-muted">
                         <span
@@ -155,7 +125,6 @@ export function WorkSection() {
                       </div>
                     </div>
 
-                    {/* Titles */}
                     <div className="mt-6">
                       <h3
                         dir="ltr"
@@ -168,7 +137,6 @@ export function WorkSection() {
                       </p>
                     </div>
 
-                    {/* Challenge & Solution separated by whitespace and hairline rule */}
                     <div className="mt-6 space-y-4 text-sm leading-relaxed text-fg-secondary">
                       <div>
                         <span className="font-semibold text-danger">مسئله: </span>
@@ -182,7 +150,6 @@ export function WorkSection() {
                     </div>
                   </div>
 
-                  {/* Unboxed Stack Metadata & Outcome */}
                   <div className="mt-8 border-t border-line pt-5">
                     <p dir="ltr" className="font-mono text-xs leading-relaxed text-muted">
                       {project.stack.join(" · ")}
@@ -196,7 +163,7 @@ export function WorkSection() {
         </div>
 
         {/* Grounded Quantitative Proof Row */}
-        <Reveal delay={0.2}>
+        <Reveal delay={0.18}>
           <div className="mt-14 grid grid-cols-1 divide-y divide-line border-y border-line sm:grid-cols-3 sm:divide-x sm:divide-x-reverse sm:divide-y-0">
             {HIGHLIGHTS.map((item) => (
               <div key={item.label} className="px-4 py-6 text-center">

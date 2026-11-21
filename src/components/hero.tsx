@@ -108,7 +108,7 @@ export function Hero() {
               </MovingBorderLink>
 
               <Link
-                href="#work"
+                href="#projects"
                 className="inline-flex min-h-[48px] items-center gap-2 whitespace-nowrap rounded-full border border-line-strong bg-surface/80 px-6 py-3 text-sm font-medium text-fg backdrop-blur-sm transition-colors duration-150 hover:border-accent hover:text-accent"
               >
                 <span>ببین چی ساختم</span>
@@ -179,10 +179,10 @@ export function Hero() {
         {/* Quiet Scroll Anchor */}
         <div className="flex items-center justify-center pt-4">
           <a
-            href="#work"
+            href="#agent"
             className="group inline-flex min-h-[40px] items-center gap-2 text-xs font-medium text-muted transition-colors duration-150 hover:text-accent"
           >
-            <span>کارها رو ببین</span>
+            <span>نقشه ایجنت و کارها رو ببین</span>
             <ArrowDown
               size={14}
               aria-hidden="true"

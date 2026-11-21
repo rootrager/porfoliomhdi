@@ -3,23 +3,24 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
+  ArrowLeft,
   ArrowUpLeft,
   Check,
   Copy,
   EnvelopeSimple,
   GithubLogo,
   PaperPlaneTilt,
+  User,
 } from "@phosphor-icons/react";
+import { SITE_LINKS } from "@/content/site";
 import { Reveal } from "./reveal";
-
-const EMAIL = "hello@mhdi.dev";
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(EMAIL);
+      await navigator.clipboard.writeText(SITE_LINKS.email);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2200);
     } catch {
@@ -63,7 +64,6 @@ export function ContactSection() {
 
               {/* Direct Contact Channels */}
               <div className="flex flex-col justify-between gap-4 lg:col-span-5">
-                {/* Email Direct Card */}
                 <div className="rounded-2xl border border-line bg-bg p-5">
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-xs font-medium text-muted">ایمیل</span>
@@ -87,11 +87,11 @@ export function ContactSection() {
                   </div>
 
                   <p dir="ltr" className="mt-2 font-mono text-base font-semibold text-fg">
-                    {EMAIL}
+                    {SITE_LINKS.email}
                   </p>
 
                   <a
-                    href={`mailto:${EMAIL}`}
+                    href={`mailto:${SITE_LINKS.email}`}
                     className="mt-4 flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-accent-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
                   >
                     <EnvelopeSimple size={18} weight="bold" aria-hidden="true" />
@@ -99,10 +99,9 @@ export function ContactSection() {
                   </a>
                 </div>
 
-                {/* Telegram & GitHub Direct Links */}
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                   <a
-                    href="https://t.me/rootrager"
+                    href={SITE_LINKS.telegram}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex min-h-[64px] items-center justify-between rounded-2xl border border-line bg-bg px-5 py-3.5 transition-colors duration-150 hover:border-accent"
@@ -113,7 +112,7 @@ export function ContactSection() {
                         <div className="text-sm font-semibold text-fg">تلگرام</div>
                         <div className="text-xs text-muted">
                           <span dir="ltr" className="font-mono">
-                            @rootrager
+                            {SITE_LINKS.telegramHandle}
                           </span>{" "}
                           · سریع‌تر جواب می‌دم
                         </div>
@@ -127,7 +126,7 @@ export function ContactSection() {
                   </a>
 
                   <a
-                    href="https://github.com/rootrager"
+                    href={SITE_LINKS.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex min-h-[64px] items-center justify-between rounded-2xl border border-line bg-bg px-5 py-3.5 transition-colors duration-150 hover:border-accent"
@@ -137,7 +136,7 @@ export function ContactSection() {
                       <div>
                         <div className="text-sm font-semibold text-fg">گیت‌هاب</div>
                         <div dir="ltr" className="font-mono text-xs text-muted">
-                          github.com/rootrager
+                          {SITE_LINKS.githubHandle}
                         </div>
                       </div>
                     </div>
@@ -153,6 +152,38 @@ export function ContactSection() {
           </div>
         </Reveal>
 
+        {/* Hemisphere Bridge to Left Brain (/human) */}
+        <Reveal delay={0.1}>
+          <Link
+            href="/human"
+            data-hemisphere="human"
+            className="group mt-8 flex flex-col items-start justify-between gap-4 rounded-3xl border border-line bg-bg px-7 py-6 text-fg transition-transform duration-200 hover:-translate-y-0.5 sm:flex-row sm:items-center md:px-10 md:py-8"
+          >
+            <div>
+              <p className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <User size={15} aria-hidden="true" />
+                <span>نیم‌کره چپ · دنیای انسانی</span>
+              </p>
+              <h3 className="mt-1.5 font-display text-3xl tracking-normal text-fg sm:text-4xl">
+                می‌خوای آدم پشت این کدها رو هم بشناسی؟
+              </h3>
+              <p className="mt-1 text-sm text-fg-secondary">
+                داستان مسیرم، اخلاق کاری، گالری کارهام و چیزایی که الان درگیرشم.
+              </p>
+            </div>
+
+            <span className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-accent-fg">
+              <span>برو به دنیای انسانی</span>
+              <ArrowLeft
+                size={16}
+                weight="bold"
+                aria-hidden="true"
+                className="transition-transform duration-150 group-hover:-translate-x-1 motion-reduce:transition-none"
+              />
+            </span>
+          </Link>
+        </Reveal>
+
         {/* Quiet Semantic Footer */}
         <footer className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line pt-6 text-xs text-muted sm:flex-row">
           <p dir="ltr" className="font-mono">
@@ -160,17 +191,20 @@ export function ContactSection() {
           </p>
 
           <nav aria-label="لینک‌های فوتر" className="flex flex-wrap items-center gap-6">
-            <Link href="/#work" className="transition-colors hover:text-fg">
+            <Link href="/" className="transition-colors hover:text-fg">
+              صفحه ورود
+            </Link>
+            <Link href="/work#agent" className="transition-colors hover:text-fg">
+              ایجنت و اسکیل‌ها
+            </Link>
+            <Link href="/work#projects" className="transition-colors hover:text-fg">
               پروژه‌ها
             </Link>
-            <Link href="/#story" className="transition-colors hover:text-fg">
-              مسیر من
-            </Link>
-            <Link href="/about" className="transition-colors hover:text-fg">
-              درباره من
+            <Link href="/human" className="transition-colors hover:text-fg">
+              دنیای انسانی
             </Link>
             <a
-              href="https://github.com/rootrager"
+              href={SITE_LINKS.github}
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-fg"
@@ -178,7 +212,7 @@ export function ContactSection() {
               گیت‌هاب
             </a>
             <a
-              href="https://t.me/rootrager"
+              href={SITE_LINKS.telegram}
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-fg"
