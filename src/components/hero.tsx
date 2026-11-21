@@ -12,9 +12,9 @@ const FOCUS_AREAS = [
     index: "01",
     label: "سخت‌افزار و آیفون",
     summary:
-      "عیب‌یابی لایه صفر از طریق ارتباط مستقیم با Lockdownd، استخراج تله‌متری BMS باتری و کارشناسی اصالت قطعات بدون اتکا به کلود.",
-    metricLabel: "معماری تحلیل",
-    metricValue: "100% آفلاین و بومی",
+      "وصل شدن مستقیم به Lockdownd، خوندن دیتای واقعی BMS باتری و تشخیص قطعات تقلبی آیفون — کاملاً آفلاین و بدون نیاز به هیچ کلودی.",
+    metricLabel: "شیوه کار",
+    metricValue: "100% آفلاین",
     icon: Cpu,
   },
   {
@@ -22,9 +22,9 @@ const FOCUS_AREAS = [
     index: "02",
     label: "مهندسی معکوس و امنیت",
     summary:
-      "تحلیل باینری‌های لینوکس، شناخت عمیق پروتکل‌های سطح پایین دستگاه و پیاده‌سازی زیرساخت‌های مقاوم و امن شبکه.",
-    metricLabel: "اعتبارسنجی DNS",
-    metricValue: "267+ سرور فعال",
+      "سر درآوردن از باینری‌های لینوکس، پروتکل‌های لایه پایین و ساختن مسیرهای مقاوم DNS وقتی اینترنت عادی جواب نمی‌ده.",
+    metricLabel: "سرورهای تست‌شده",
+    metricValue: "267+ DNS Resolver",
     icon: ShieldCheck,
   },
   {
@@ -32,9 +32,9 @@ const FOCUS_AREAS = [
     index: "03",
     label: "سیستم‌های چندایجنتی",
     summary:
-      "طراحی حلقه‌های خودکار ReAct، موتور قیمت‌گذاری و حسابداری دانی‌فون و دستیارهای تخصصی مبتنی بر پایگاه دانش برداری.",
-    metricLabel: "موجودی همگام",
-    metricValue: "83+ دستگاه زنده",
+      "ساختن ایجنت‌هایی که کار واقعی انجام می‌دن؛ از موتور قیمت‌گذاری و حسابداری دانی‌فون تا دستیار مربیگری با دیتابیس برداری.",
+    metricLabel: "موجودی زنده",
+    metricValue: "83+ دستگاه",
     icon: Robot,
   },
   {
@@ -42,8 +42,8 @@ const FOCUS_AREAS = [
     index: "04",
     label: "گرافیک و WebGPU",
     summary:
-      "ساخت رندرهای بلادرنگ WebGPU با شیدرهای اختصاصی، بلوم انتخابی و رابط‌های کاربری مدرن و سریع در وب.",
-    metricLabel: "نرخ فریم رندر",
+      "تجربه‌های ریل‌تایم با WebGPU، شیدرهای دست‌نویس، بلوم انتخابی و رابط‌های کاربری که هم سریع باشن هم چشم‌نواز.",
+    metricLabel: "اجرای روان",
     metricValue: "60 FPS WebGPU",
     icon: Sparkle,
   },
@@ -75,7 +75,8 @@ export function Hero() {
         <div className="my-auto py-6 sm:py-10">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-medium text-muted">
-              تهران <span aria-hidden="true">·</span> مهندسی نرم‌افزار، سخت‌افزار و هوش مصنوعی
+              تهران <span aria-hidden="true">·</span> ۲۱ ساله <span aria-hidden="true">·</span>{" "}
+              نرم‌افزار، سخت‌افزار و هوش مصنوعی
             </p>
 
             <h1
@@ -86,8 +87,8 @@ export function Hero() {
             </h1>
 
             <p className="mx-auto mt-5 max-w-2xl text-balance text-lg leading-relaxed text-fg-secondary sm:text-xl">
-              تبدیل ایده‌های سخت به سیستم‌های زنده؛ از کالبدشکافی سخت‌افزار آیفون و مهندسی معکوس
-              تا معماری ایجنت‌های هوشمند و محصولات وب.
+              از کارشناسی سخت‌افزار آیفون و مهندسی معکوس تا ساختن ایجنت‌های هوش مصنوعی و ابزارهای
+              وب؛ دوست دارم به جای حرف و تئوری، چیزایی بسازم که واقعاً به کار بیان.
             </p>
 
             {/* Primary & Secondary Actions */}
@@ -101,7 +102,7 @@ export function Hero() {
                 className="text-accent-fg"
               >
                 <span className="flex items-center gap-2 whitespace-nowrap text-sm font-bold sm:text-base">
-                  <span>شروع همکاری و ارتباط مستقیم</span>
+                  <span>بیا حرف بزنیم</span>
                   <ArrowUpLeft size={16} weight="bold" aria-hidden="true" />
                 </span>
               </MovingBorderLink>
@@ -110,7 +111,7 @@ export function Hero() {
                 href="#work"
                 className="inline-flex min-h-[48px] items-center gap-2 whitespace-nowrap rounded-full border border-line-strong bg-surface/80 px-6 py-3 text-sm font-medium text-fg backdrop-blur-sm transition-colors duration-150 hover:border-accent hover:text-accent"
               >
-                <span>مشاهده پروژه‌ها</span>
+                <span>ببین چی ساختم</span>
               </Link>
             </div>
           </div>
@@ -119,7 +120,7 @@ export function Hero() {
           <div className="mx-auto mt-14 max-w-4xl border-t border-line pt-8">
             <div
               role="tablist"
-              aria-label="حوزه‌های تخصصی"
+              aria-label="حوزه‌های کاری من"
               className="grid grid-cols-2 gap-1.5 rounded-2xl border border-line bg-surface/85 p-1.5 backdrop-blur-md sm:grid-cols-4"
             >
               {FOCUS_AREAS.map((area, idx) => {
@@ -181,7 +182,7 @@ export function Hero() {
             href="#work"
             className="group inline-flex min-h-[40px] items-center gap-2 text-xs font-medium text-muted transition-colors duration-150 hover:text-accent"
           >
-            <span>پروژه‌های منتخب</span>
+            <span>کارها رو ببین</span>
             <ArrowDown
               size={14}
               aria-hidden="true"

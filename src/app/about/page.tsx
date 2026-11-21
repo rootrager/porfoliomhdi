@@ -119,7 +119,7 @@ export default function AboutPage() {
                   className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-fg-secondary transition-colors hover:text-accent"
                 >
                   <ArrowRight size={16} aria-hidden="true" />
-                  <span>بازگشت به صفحه اصلی</span>
+                  <span>برگشت به صفحه اصلی</span>
                 </Link>
 
                 <a
@@ -127,7 +127,7 @@ export default function AboutPage() {
                   className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-accent-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
                 >
                   <EnvelopeSimple size={16} weight="bold" aria-hidden="true" />
-                  <span>ارتباط با من</span>
+                  <span>پیام بده</span>
                 </a>
               </footer>
             </article>

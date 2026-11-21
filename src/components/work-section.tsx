@@ -21,13 +21,13 @@ const PROJECTS: ProjectItem[] = [
   {
     index: "01",
     title: "AURA Core-X Diagnostics",
-    faTitle: "کشف تقلب و کارشناسی سخت‌افزار آیفون",
-    category: "عیب‌یابی سخت‌افزار و iOS",
+    faTitle: "تشخیص تقلب و کارشناسی سخت‌افزار آیفون",
+    category: "سخت‌افزار و iOS",
     problem:
-      "در بازار دست‌دوم، دستگاه‌های پروگرام‌شده سلامت باتری را ۱۰۰٪ نشان می‌دهند و خروجی ابزارهای معمول برای کاربر غیرقابل فهم و وابسته به سرورهای خارجی است.",
+      "توی بازار آیفون دست‌دوم، گوشی‌های پروگرام‌شده سلامت باتری رو ۱۰۰٪ نشون می‌دن و خروجی ابزارهایی مثل 3uTools هم برای آدم عادی گنگه و هم وابسته به کلوده.",
     solution:
-      "اتصال مستقیم USB به Lockdownd، استخراج تله‌متری واقعی BMS باتری و تطبیق شماره‌سریال‌های کارخانه با قطعات داخلی به‌صورت کاملاً محلی.",
-    outcome: "100% آفلاین و زیروتراست",
+      "یه سیستم آفلاین ساختم که مستقیم با USB به Lockdownd وصل می‌شه، دیتای خام BMS باتری رو می‌خونه و سریال قطعات داخلی رو با کارخونه تطبیق می‌ده.",
+    outcome: "کارشناسی ۱۰۰٪ آفلاین و مستقل",
     stack: ["iOS Protocols", "Hardware Security", "FastAPI", "Gemma 3 Local"],
     github: "https://github.com/rootrager/aura-corex-diagnostics",
     icon: Cpu,
@@ -36,12 +36,12 @@ const PROJECTS: ProjectItem[] = [
     index: "02",
     title: "DaniFone Commerce Engine",
     faTitle: "موتور قیمت‌گذاری، حسابداری و انبار زنده",
-    category: "سیستم‌های چندایجنتی و فین‌تک",
+    category: "ایجنت هوشمند و فین‌تک",
     problem:
-      "نوسان لحظه‌ای قیمت آیفون با نرخ ارز، بررسی دستی صدها فیش واریزی و پیگیری فرآیند انتقال مالکیت همتا باعث خطای انسانی و اتلاف سرمایه می‌شد.",
+      "قیمت آیفون ثانیه‌ای با دلار بالا پایین می‌شه؛ چک کردن دستی صدها فیش واریزی و پیگیری انتقال مالکیت همتا هم پر از خطای انسانی و دردسر بود.",
     solution:
-      "ترکیب بینایی ماشین برای ارزیابی وضعیت دستگاه، ربات تلگرام OCR برای پردازش فیش‌های بانکی و داشبورد حسابداری سه‌دید با کلیدهای میانبر سریع.",
-    outcome: "83+ دستگاه همگام در چرخه زنده",
+      "بینایی ماشین برای بررسی ظاهر گوشی، یه بات تلگرام OCR برای خوندن فیش‌های بانکی و یه داشبورد حسابداری سریع با شورتکات‌های کیبورد رو گذاشتم کنار هم.",
+    outcome: "بیش از ۸۳ دستگاه توی چرخه زنده",
     stack: ["ReAct Agents", "Vision OCR", "SQLite WAL", "Next.js 16"],
     github: "https://github.com/rootrager/danifon-pricing-engine",
     icon: ShoppingCart,
@@ -49,26 +49,26 @@ const PROJECTS: ProjectItem[] = [
   {
     index: "03",
     title: "Shamloo AI Coach Copilot",
-    faTitle: "دستیار مربیگری ورزشی با پایگاه دانش برداری",
-    category: "پایگاه دانش برداری و HITL",
+    faTitle: "دستیار مربیگری ورزشی با دیتابیس برداری",
+    category: "RAG و تایید انسانی",
     problem:
-      "سپردن برنامه‌نویسی تمرینی به مدل‌های عمومی به دلیل احتمال توهم برای ورزشکاران آسیب‌دیده خطرناک است و پیگیری برنامه‌ها توسط شاگردان دشوار بود.",
+      "برنامه تمرینی دادن به هوش مصنوعیِ خالی خطرناکه؛ اگه مدل توهم بزنه ممکنه به ورزشکار آسیب‌دیده ضرر بزنه. از اون طرف شاگردها هم مدام برنامه‌هاشون رو گم می‌کردن.",
     solution:
-      "معماری Human-in-the-Loop روی ChromaDB از صدها برنامه واقعی؛ آنالیز وضعیت بدنی در تلگرام، اعتبارسنجی دقیق با Pydantic و خروجی PDF پس از تایید مربی.",
-    outcome: "اعتبارسنجی سفت‌وسخت بدون توهم",
+      "صدها برنامه واقعی مربی رو ریختم توی ChromaDB؛ بات توی تلگرام وضعیت شاگرد رو می‌گیره، با Pydantic سخت‌گیرانه چکش می‌کنه و بعد از تایید خود مربی، یه PDF مرتب تحویل می‌ده.",
+    outcome: "تایید نهایی با مربی، بدون توهم",
     stack: ["ChromaDB RAG", "Telegram Bot API", "Pydantic V2", "WeasyPrint"],
     icon: Barbell,
   },
   {
     index: "04",
     title: "SubFarsiPro & WebSubFarsi",
-    faTitle: "سامانه تولید و ترجمه هوشمند زیرنویس فارسی",
-    category: "پردازش زبان طبیعی و اجرای آفلاین",
+    faTitle: "ساخت و ترجمه زیرنویس فارسی به‌صورت آفلاین",
+    category: "هوش مصنوعی آفلاین",
     problem:
-      "ابزارهای زیرنویس یا نیازمند اشتراک‌های دلاری و اینترنت پایدار بودند یا ترجمه ماشینی، تحت‌اللفظی و بی‌روح به فارسی ارائه می‌دادند.",
+      "ابزارهای زیرنویس یا اشتراک دلاری و اینترنت خوب می‌خوان، یا یه ترجمه خشک و کتابی و بی‌روح تحویل می‌دن که اصلاً شبیه حرف‌زدن ما نیست.",
     solution:
-      "موتور تبدیل صوت به متن Whisper در کنار مدل‌های زبانی محلی به‌صورت ۱۰۰٪ آفلاین؛ ترجمه طبیعی با اصطلاحات رایج و لحن واقعی محاوره‌ای فارسی.",
-    outcome: "100% آفلاین با حفظ حریم خصوصی",
+      "Whisper رو با مدل‌های زبانی محلی ترکیب کردم تا همه‌چیز ۱۰۰٪ آفلاین روی سیستم خود کاربر اجرا بشه و زیرنویس با لحن محاوره‌ای و طبیعی فارسی در بیاد.",
+    outcome: "اجرای کامل روی سیستم خودت",
     stack: ["Whisper AI", "Local LLM", "Python / PyQt", "Motion"],
     github: "https://github.com/rootrager/finalsubfarsi",
     icon: Subtitles,
@@ -76,9 +76,9 @@ const PROJECTS: ProjectItem[] = [
 ];
 
 const HIGHLIGHTS = [
-  { value: "4", label: "سیستم تولیدی در دنیای واقعی" },
-  { value: "83+", label: "دستگاه فعال در موتور موجودی زنده" },
-  { value: "100%", label: "معماری بومی و مستقل از کلود" },
+  { value: "4", label: "پروژه واقعی و در حال استفاده" },
+  { value: "83+", label: "دستگاه توی سیستم انبار زنده" },
+  { value: "100%", label: "اجرای محلی بدون وابستگی به کلود" },
 ] as const;
 
 export function WorkSection() {
@@ -100,15 +100,15 @@ export function WorkSection() {
         <Reveal>
           <div className="flex flex-col justify-between gap-6 border-b border-line pb-8 md:flex-row md:items-end">
             <div>
-              <p className="text-sm font-medium text-accent">پروژه‌های منتخب</p>
+              <p className="text-sm font-medium text-accent">کارهای واقعی</p>
               <h2 className="mt-2 font-display text-5xl tracking-normal text-fg md:text-7xl">
-                کارهایی که ساخته‌ام
+                چیزهایی که ساختم
               </h2>
             </div>
 
             <p className="max-w-md text-sm leading-relaxed text-fg-secondary md:text-base">
-              هر پروژه برای شکستن یک محدودیت واقعی در بازار، حذف کارهای تکراری یا کارشناسی دقیق در
-              لایه صفر ساخته شده است.
+              کد وقتی جذابه که یه گره واقعی رو باز کنه. این پروژه‌ها همه‌شون از دل یه دردسر واقعی تو
+              بازار یا کار روزمره در اومدن، نه تمرین‌های الکی.
             </p>
           </div>
         </Reveal>
@@ -140,7 +140,7 @@ export function WorkSection() {
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={`مخزن گیت‌هاب ${project.title}`}
+                            aria-label={`گیت‌هاب ${project.title}`}
                             className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line text-fg-secondary transition-colors duration-150 hover:border-accent hover:text-accent"
                           >
                             <GithubLogo size={18} />
@@ -171,7 +171,7 @@ export function WorkSection() {
                     {/* Challenge & Solution separated by whitespace and hairline rule */}
                     <div className="mt-6 space-y-4 text-sm leading-relaxed text-fg-secondary">
                       <div>
-                        <span className="font-semibold text-danger">چالش: </span>
+                        <span className="font-semibold text-danger">مسئله: </span>
                         <span>{project.problem}</span>
                       </div>
 

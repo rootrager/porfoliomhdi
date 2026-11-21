@@ -62,7 +62,7 @@ export function SiteHeader() {
             href="/#contact"
             className="shrink-0 whitespace-nowrap rounded-full bg-accent px-5 py-2 text-sm font-semibold text-accent-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
           >
-            شروع همکاری
+            بیا حرف بزنیم
           </Link>
         </div>
 
@@ -100,7 +100,7 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className="mt-2 flex min-h-[44px] items-center justify-center rounded-full bg-accent px-5 text-sm font-semibold text-accent-fg"
             >
-              شروع همکاری
+              بیا حرف بزنیم
             </Link>
           </div>
         </nav>

@@ -39,21 +39,22 @@ export function ContactSection() {
               {/* Editorial Value Proposition */}
               <div className="flex flex-col justify-between lg:col-span-7">
                 <div>
-                  <p className="text-sm font-medium text-accent">شروع همکاری</p>
+                  <p className="text-sm font-medium text-accent">تماس با من</p>
 
                   <h2 className="mt-2 font-display text-5xl tracking-normal text-fg md:text-7xl">
-                    خط مستقیم ارتباط و شروع کار
+                    بیا حرف بزنیم
                   </h2>
 
                   <p className="mt-4 max-w-xl text-base leading-relaxed text-fg-secondary md:text-lg">
-                    بدون فرم‌های طولانی و تشریفات اضافه. اگر مسئله پیچیده‌ای داری که نیاز به حل
-                    دقیق دارد یا محصولی که می‌خواهی واقعی و قابل اتکا ساخته شود، مستقیم پیام بده.
+                    هیچ فرم طولانی و اداری‌ای در کار نیست. اگه یه پروژه جدی داری، یه ایده که
+                    می‌خوای از رو کاغذ بیاد بیرون، یا یه گره فنی که دنبال راه‌حل واقعی براشی، مستقیم
+                    پیام بده.
                   </p>
                 </div>
 
                 {/* Quiet Availability & Core Stack Metadata */}
                 <div className="mt-8 border-t border-line pt-6 text-sm text-fg-secondary">
-                  <p>تهران · دسترس‌پذیر برای همکاری ریموت و پروژه‌های تخصصی</p>
+                  <p>تهران · برای کار ریموت و پروژه‌های فنی در دسترس هستم</p>
                   <p dir="ltr" className="mt-2 font-mono text-xs text-muted">
                     Python · Next.js · Reverse Engineering · Multi-Agent RAG
                   </p>
@@ -65,7 +66,7 @@ export function ContactSection() {
                 {/* Email Direct Card */}
                 <div className="rounded-2xl border border-line bg-bg p-5">
                   <div className="flex items-center justify-between gap-3">
-                    <span className="text-xs font-medium text-muted">ایمیل مستقیم</span>
+                    <span className="text-xs font-medium text-muted">ایمیل</span>
                     <button
                       type="button"
                       onClick={handleCopyEmail}
@@ -74,12 +75,12 @@ export function ContactSection() {
                       {copied ? (
                         <>
                           <Check size={14} weight="bold" className="text-accent" />
-                          <span className="text-accent">کپی شد</span>
+                          <span className="text-accent">کپی شد!</span>
                         </>
                       ) : (
                         <>
                           <Copy size={14} />
-                          <span>کپی ایمیل</span>
+                          <span>کپی کن</span>
                         </>
                       )}
                     </button>
@@ -94,7 +95,7 @@ export function ContactSection() {
                     className="mt-4 flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-accent-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
                   >
                     <EnvelopeSimple size={18} weight="bold" aria-hidden="true" />
-                    <span>ارسال ایمیل مستقیم</span>
+                    <span>برام ایمیل بفرست</span>
                   </a>
                 </div>
 
@@ -109,9 +110,12 @@ export function ContactSection() {
                     <div className="flex items-center gap-3">
                       <PaperPlaneTilt size={20} className="text-accent" aria-hidden="true" />
                       <div>
-                        <div className="text-sm font-semibold text-fg">تلگرام مستقیم</div>
-                        <div dir="ltr" className="font-mono text-xs text-muted">
-                          @rootrager
+                        <div className="text-sm font-semibold text-fg">تلگرام</div>
+                        <div className="text-xs text-muted">
+                          <span dir="ltr" className="font-mono">
+                            @rootrager
+                          </span>{" "}
+                          · سریع‌تر جواب می‌دم
                         </div>
                       </div>
                     </div>
@@ -131,7 +135,7 @@ export function ContactSection() {
                     <div className="flex items-center gap-3">
                       <GithubLogo size={20} className="text-accent" aria-hidden="true" />
                       <div>
-                        <div className="text-sm font-semibold text-fg">مخازن گیت‌هاب</div>
+                        <div className="text-sm font-semibold text-fg">گیت‌هاب</div>
                         <div dir="ltr" className="font-mono text-xs text-muted">
                           github.com/rootrager
                         </div>

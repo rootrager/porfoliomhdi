@@ -10,36 +10,36 @@ const TIMELINE_STATIONS = [
   {
     step: "01",
     epoch: "2010 — 2015",
-    title: "اتاق کودکی، یاهو و کنجکاوی بی‌پایان",
-    desc: "زل زدن به مانیتور برادر بزرگترم و یاد گرفتن تک‌تک حرکاتش. ساعت‌ها گشتن در یاهو، تمام کردن Need for Speed Most Wanted و ساختن دنیای خیالی قهرمان‌ها در خانه.",
+    title: "اتاق کودکی، یاهو و بازی‌های قدیمی",
+    desc: "زل می‌زدم به مانیتور داداشم تا ببینم با کامپیوترش چیکار می‌کنه. ساعت‌ها تو یاهو می‌گشتم، Most Wanted بازی می‌کردم و تو ذهنم دنیای ابرقهرمانی خودم رو می‌ساختم.",
     icon: GameController,
   },
   {
     step: "02",
     epoch: "2015 — 2018",
-    title: "مستطیل سبز فوتبال و آچار مکانیکی",
-    desc: "ورود به فوتبال باشگاهی از کلاس پنجم و بعد کار عملی در مکانیکی. یاد گرفتن انضباط، استقامت فیزیکی و تسلیم نشدن زیر فشار واقعی.",
+    title: "زمین فوتبال و آچار مکانیکی",
+    desc: "از کلاس پنجم رفتم فوتبال باشگاهی، بعدش هم دستم رفت تو آچار و مکانیکی. همون‌جا یاد گرفتم کار واقعی یعنی چی و چطور زیر فشار کم نیارم.",
     icon: Wrench,
   },
   {
     step: "03",
     epoch: "2018 — 2022",
-    title: "لنز دوربین و ۴ سال کف بازار مد",
-    desc: "شروع عکاسی و فیلم‌برداری از ۱۴ سالگی و چهار سال مدیریت کامل ویترین، تولید محتوا و فروشندگی؛ جایی که سلیقه بصری و روانشناسی مخاطب را از نزدیک شناختم.",
+    title: "دوربین عکاسی و ۴ سال کف بازار مد",
+    desc: "از ۱۴ سالگی عکاسی و فیلم‌برداری رو شروع کردم و چهار سال توی فروشگاه پوشاک همه کارها، از ویترین و محتوا تا فروش رو چرخوندم. سلیقه بصری و شناخت آدم‌ها از همون‌جا اومد.",
     icon: Camera,
   },
   {
     step: "04",
     epoch: "2022 — 2024",
-    title: "ترمینال لینوکس، امنیت و مهندسی سیستم",
-    desc: "ورود جدی به دنیای امنیت سایبری، کار روزانه با آرچ لینوکس و روزی ۱۰ تا ۱۲ ساعت مطالعه و تمرین مستمر در علوم کامپیوتر و شبکه.",
+    title: "لینوکس، امنیت و شب‌زنده‌داری‌ها",
+    desc: "افتادم تو دنیای امنیت سایبری و آرچ لینوکس. روزی ۱۰ تا ۱۲ ساعت پای سیستم بودم و شبکه‌ها و سیستم‌ها رو می‌شکافتم تا بفهمم پشت پرده چطوری کار می‌کنن.",
     icon: Terminal,
   },
   {
     step: "05",
-    epoch: "2024 — اکنون",
-    title: "از کشف ایراد تا ساختن سیستم‌های زنده",
-    desc: "تلفیق هوش مصنوعی، سخت‌افزار و توسعه نرم‌افزار برای حل مسائل واقعی از دل محدودیت‌ها؛ ساخت ابزارهایی که واقعاً کار می‌کنند و دستیار هوش مصنوعی شخصی.",
+    epoch: "2024 — الان",
+    title: "فقط پیدا کردن ایراد بس نیست، باید ساخت",
+    desc: "هوش مصنوعی که اومد، دیدم بیشتر از کشف باگ، از ساختن راه‌حل لذت می‌برم. الان دارم سیستم‌های واقعی می‌سازم و دنبال ساختن دستیار هوشمند شخصیِ خودم هستم.",
     icon: Brain,
   },
 ] as const;
@@ -61,15 +61,15 @@ export function ServicesSection() {
           <Reveal>
             <div className="flex flex-col justify-between gap-6 border-b border-line pb-8 md:flex-row md:items-end">
               <div>
-                <p className="text-sm font-medium text-accent">مسیر و سبک کاری</p>
+                <p className="text-sm font-medium text-accent">از کجا اومدم</p>
                 <h2 className="mt-2 font-display text-5xl tracking-normal text-fg md:text-7xl">
-                  ریشه‌ها، اراده و سیر تحول
+                  مسیر من تا اینجا
                 </h2>
               </div>
 
               <p className="max-w-md text-sm leading-relaxed text-fg-secondary md:text-base">
-                در یک تخصص بسته متوقف نمی‌مانم؛ از درک سلیقه کاربر در کف بازار تا نوشتن کد در
-                لایه‌های زیرین لینوکس و سخت‌افزار.
+                هیچ‌وقت تو یه چارچوب بسته نموندم؛ از چند سال کار کف بازار و شناختن سلیقه آدم‌ها تا
+                سر و کله زدن با ترمینال لینوکس و سخت‌افزار.
               </p>
             </div>
           </Reveal>
@@ -123,7 +123,7 @@ export function ServicesSection() {
                   href="/about"
                   className="group inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-accent transition-opacity hover:opacity-90"
                 >
-                  <span>خواندن روایت کامل درباره من</span>
+                  <span>کل داستانم رو اینجا بخون</span>
                   <ArrowLeft
                     size={16}
                     weight="bold"
@@ -140,14 +140,13 @@ export function ServicesSection() {
               <Reveal delay={0.12}>
                 <div className="group flex flex-col justify-between overflow-hidden rounded-2xl bg-accent p-6 text-accent-fg md:p-7">
                   <div>
-                    <p className="text-xs font-bold tracking-wide text-accent-fg/75">
-                      فلسفه ساختن
-                    </p>
+                    <p className="text-xs font-bold tracking-wide text-accent-fg/75">چرا می‌سازم</p>
                     <blockquote className="mt-4 font-display text-3xl leading-snug tracking-normal text-accent-fg md:text-4xl">
-                      «کدنویسی فقط منطق و سینتکس نیست؛ هویت، اراده و زنده کردن رویاهاست.»
+                      «کدنویسی برام فقط سینتکس و منطق نیست؛ راهیه برای اینکه چیزایی که تو ذهنمه
+                      واقعی کنم.»
                     </blockquote>
                     <p className="mt-3 text-sm font-medium text-accent-fg/80">
-                      با الهام از هیرو در انیمیشن Big Hero 6
+                      مثل هیرو توی انیمیشن Big Hero 6
                     </p>
                   </div>
 
@@ -168,15 +167,15 @@ export function ServicesSection() {
               <Reveal delay={0.2}>
                 <div className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-surface/90 p-6 backdrop-blur-md">
                   <div className="flex items-center justify-between gap-2 border-b border-line pb-3 text-xs text-muted">
-                    <span className="font-medium text-fg">الهام‌های بصری و نوستالژی</span>
+                    <span className="font-medium text-fg">حال‌وهوای کار کردنم</span>
                     <span dir="ltr" className="font-mono">
                       Synthwave · Retro Lab
                     </span>
                   </div>
 
                   <p className="mt-4 text-sm leading-relaxed text-fg-secondary">
-                    ترکیب موسیقی‌های سینت‌ویو دهه هشتادی، هیجان Need for Speed Most Wanted و
-                    ساعت‌ها کدنویسی متمرکز در سکوت شب.
+                    آهنگ‌های سینت‌ویو دهه هشتادی، حس و حال Need for Speed Most Wanted و کد زدن توی
+                    سکوت شب.
                   </p>
 
                   <div className="mt-5 grid grid-cols-2 gap-3">
