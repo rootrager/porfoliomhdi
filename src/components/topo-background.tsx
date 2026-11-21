@@ -55,10 +55,8 @@ export interface TopoBackgroundProps {
   frameInterval?: number;
 }
 
-// Distance between field samples, in CSS px. Contours are traced through
-// this grid, so it trades smoothness for work per frame.
-// Set per instance from the `cell` prop before the effect runs.
-let CELL = 12;
+// Default sampling grid step in CSS px.
+const DEFAULT_CELL = 12;
 // Width of a hill in the terrain, in px.
 const TERRAIN_SCALE = 360;
 // Every fifth line is an index contour, drawn heavier, as on a real map.
@@ -161,8 +159,8 @@ function createNoise(seed: number) {
     const AA = perm[A] + Z;
     const AB = perm[A + 1] + Z;
     const B = perm[X + 1] + Y;
-    const BA = perm[B + 1] + Z;
-    const BB = perm[B + 1] + Y + 1;
+    const BA = perm[B] + Z;
+    const BB = perm[B + 1] + Z;
     return lerp(
       lerp(
         lerp(grad(perm[AA], fx, fy, fz), grad(perm[BA], fx - 1, fy, fz), u),
@@ -289,18 +287,19 @@ function offerCellLabel(
   x0: number,
   y0: number,
   level: number,
-  t: number
+  t: number,
+  cellSize: number
 ) {
   // The contour runs across the slope; the cell's gradient gives a steadier
   // direction than the short segment itself.
   const gx = b - a + c - d;
   const gy = d - a + c - b;
   // Slide from the cell's centre along the slope onto the line itself.
-  const px = gx / (2 * CELL);
-  const py = gy / (2 * CELL);
+  const px = gx / (2 * cellSize);
+  const py = gy / (2 * cellSize);
   const g2 = px * px + py * py;
   const lift = g2 > 0 ? (t - (a + b + c + d) / 4) / g2 : 0;
-  const half = CELL / 2;
+  const half = cellSize / 2;
   const ox = Math.max(-half, Math.min(half, lift * px));
   const oy = Math.max(-half, Math.min(half, lift * py));
   let angle = Math.atan2(gx, -gy);
@@ -324,20 +323,21 @@ function traceCell(
   i: number,
   j: number,
   interval: number,
+  cellSize: number,
   paths: { minor: Path2D; major: Path2D; slots: LabelSlots | null }
 ) {
   const a = field[j * cols + i];
   const b = field[j * cols + i + 1];
   const c = field[(j + 1) * cols + i + 1];
   const d = field[(j + 1) * cols + i];
-  const x0 = i * CELL;
-  const y0 = j * CELL;
+  const x0 = i * cellSize;
+  const y0 = j * cellSize;
   const first = Math.ceil(Math.min(a, b, c, d) / interval);
   const last = Math.floor(Math.max(a, b, c, d) / interval);
   if (first > last) {
     return;
   }
-  const box = { x0, y0, x1: x0 + CELL, y1: y0 + CELL };
+  const box = { x0, y0, x1: x0 + cellSize, y1: y0 + cellSize };
   for (let level = first; level <= last; level++) {
     const t = level * interval;
     const index =
@@ -347,14 +347,14 @@ function traceCell(
     }
     const isIndex = level % INDEX_EVERY === 0;
     cellSegments(isIndex ? paths.major : paths.minor, index, box, {
-      top: x0 + CELL * ((t - a) / (b - a)),
-      right: y0 + CELL * ((t - b) / (c - b)),
-      bottom: x0 + CELL * ((t - d) / (c - d)),
-      left: x0 + CELL * ((t - a) / (d - a)),
+      top: x0 + cellSize * ((t - a) / (b - a)),
+      right: y0 + cellSize * ((t - b) / (c - b)),
+      bottom: x0 + cellSize * ((t - d) / (c - d)),
+      left: x0 + cellSize * ((t - a) / (d - a)),
     });
     // Saddles are poor label spots: the line turns sharply there.
     if (isIndex && paths.slots && index !== 5 && index !== 10) {
-      offerCellLabel(paths.slots, [a, b, c, d], x0, y0, level, t);
+      offerCellLabel(paths.slots, [a, b, c, d], x0, y0, level, t, cellSize);
     }
   }
 }
@@ -369,6 +369,7 @@ function traceContours(
   cols: number,
   rows: number,
   interval: number,
+  cellSize: number,
   minor: Path2D,
   major: Path2D,
   slots: LabelSlots | null
@@ -376,7 +377,7 @@ function traceContours(
   const paths = { minor, major, slots };
   for (let j = 0; j < rows - 1; j++) {
     for (let i = 0; i < cols - 1; i++) {
-      traceCell(field, cols, i, j, interval, paths);
+      traceCell(field, cols, i, j, interval, cellSize, paths);
     }
   }
 }
@@ -438,7 +439,7 @@ export default function TopoBackground({
     const isSmall = window.matchMedia("(max-width: 767px)").matches;
     const pixelRatio = Math.min(window.devicePixelRatio || 1, dpr ?? (isSmall ? 1 : 1.25));
     const idleFrame = frameInterval ?? IDLE_FRAME_MS;
-    CELL = cell ?? (isSmall ? 18 : 14);
+    const cellSize = cell ?? (isSmall ? 18 : DEFAULT_CELL + 2);
 
     let width = 0;
     let height = 0;
@@ -471,8 +472,8 @@ export default function TopoBackground({
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      cols = Math.ceil(width / CELL) + 1;
-      rows = Math.ceil(height / CELL) + 1;
+      cols = Math.ceil(width / cellSize) + 1;
+      rows = Math.ceil(height / cellSize) + 1;
       field = new Float32Array(cols * rows);
       color = getComputedStyle(canvas).color;
       measureContent();
@@ -485,9 +486,9 @@ export default function TopoBackground({
       const spread = 2 * HILL_SPREAD * HILL_SPREAD;
       const ringWidth = 2 * RIPPLE_WIDTH * RIPPLE_WIDTH;
       for (let j = 0; j < rows; j++) {
-        const y = j * CELL;
+        const y = j * cellSize;
         for (let i = 0; i < cols; i++) {
-          const x = i * CELL;
+          const x = i * cellSize;
           const nx = (x + drift) / terrainScale;
           const ny = y / terrainScale;
           let v =
@@ -582,6 +583,7 @@ export default function TopoBackground({
         cols,
         rows,
         interval,
+        cellSize,
         minor,
         major,
         labels ? slots : null
@@ -751,7 +753,7 @@ export default function TopoBackground({
       {/* Faded out top and bottom so the map sits into the page around it. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <canvas
-          className="h-full w-full text-[#ccff00] opacity-0 transition-opacity duration-500 ease-out"
+          className="h-full w-full text-accent opacity-0 transition-opacity duration-500 ease-out"
           ref={canvasRef}
           style={{
             maskImage:

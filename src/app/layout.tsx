@@ -1,22 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Vazirmatn, Jomhuria, Orbitron } from "next/font/google";
-import localFont from "next/font/local";
+import { IBM_Plex_Mono, Jomhuria, Orbitron, Vazirmatn } from "next/font/google";
 import "./globals.css";
 
-const orbitron = Orbitron({
-  subsets: ["latin"],
-  variable: "--font-orbitron",
+const vazir = Vazirmatn({
+  subsets: ["arabic", "latin"],
+  variable: "--font-vazir",
   display: "swap",
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
 });
 
 const jomhuria = Jomhuria({
@@ -26,28 +15,47 @@ const jomhuria = Jomhuria({
   display: "swap",
 });
 
-const neopixel = localFont({
-  src: "./fonts/neopixel-regular.otf",
-  variable: "--font-neopixel",
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-orbitron",
   display: "swap",
 });
 
-const corgan = localFont({
-  src: "./fonts/Corgan-BL4vG.otf",
-  variable: "--font-corgan",
+const ibmMono = IBM_Plex_Mono({
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+  variable: "--font-ibm-mono",
   display: "swap",
 });
 
-const vazir = Vazirmatn({
-  variable: "--font-vazir",
-  subsets: ["arabic", "latin"],
-  display: "swap",
-});
+const SITE_URL = "https://mhdi.dev";
 
 export const metadata: Metadata = {
-  title: "مهدی — طراح محصول، مهندس فرانت‌اند و هوش مصنوعی",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "مهدی — مهندس نرم‌افزار، سخت‌افزار و سیستم‌های هوش مصنوعی",
+    template: "%s | مهدی",
+  },
   description:
-    "پورتفولیوی شخصی مهدی: مهندسی فرانت‌اند، طراحی سیستم‌های هوش مصنوعی و طراحی محصول مدرن.",
+    "پورتفولیوی شخصی مهدی: کالبدشکافی سخت‌افزار آیفون، مهندسی معکوس، معماری سیستم‌های چندایجنتی هوش مصنوعی و توسعه محصولات وب.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fa_IR",
+    url: SITE_URL,
+    siteName: "مهدی — MHDI",
+    title: "مهدی — مهندس نرم‌افزار، سخت‌افزار و سیستم‌های هوش مصنوعی",
+    description:
+      "تبدیل ایده‌ها به سیستم‌های زنده؛ از عیب‌یابی سخت‌افزار آیفون و مهندسی معکوس تا ایجنت‌های هوشمند و محصولات وب.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "مهدی — مهندس نرم‌افزار، سخت‌افزار و سیستم‌های هوش مصنوعی",
+    description:
+      "پورتفولیوی شخصی مهدی: مهندسی سخت‌افزار آیفون، امنیت، سیستم‌های چندایجنتی و توسعه وب.",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -56,9 +64,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="fa"
       dir="rtl"
       data-scroll-behavior="smooth"
-      className={`${neopixel.variable} ${orbitron.variable} ${jomhuria.variable} ${vazir.variable} ${geistSans.variable} ${geistMono.variable} ${corgan.variable} h-full antialiased`}
+      className={`${vazir.variable} ${jomhuria.variable} ${orbitron.variable} ${ibmMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg text-fg font-persian">{children}</body>
+      <body className="flex min-h-full flex-col bg-bg font-persian text-fg selection:bg-accent selection:text-accent-fg">
+        {children}
+      </body>
     </html>
   );
 }

@@ -2,42 +2,27 @@
 
 :root {
   color-scheme: dark;
-  --bg: #090b04;
-  --fg: #fafaf9;
-  --muted: #a1a1aa;
-  --line: #222810;
+
+  /* Semantic Canvas & Surface Tokens (60-30-10 discipline) */
+  --bg: #080a05;
+  --surface: #11140c;
+  --surface-elevated: #171b11;
+
+  /* WCAG AA Verified Foreground Tokens */
+  --fg: #f5f5f0;
+  --fg-secondary: #b7beb0;
+  --fg-muted: #8b9482;
+
+  /* Structural Hairline Borders */
+  --line: #23291a;
+  --line-strong: #364026;
+
+  /* High-Intent Brand Accent (10% budget) */
   --accent: #ccff00;
-  --accent-fg: #090b04;
-  --surface: #121509;
+  --accent-fg: #080a05;
   --olive: #6e8000;
-  --olive-dark: #586600;
-  --lime: #ccff00;
-  --coral: #ff3b3b;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #090b04;
-    --fg: #fafaf9;
-    --muted: #a1a1aa;
-    --line: #222810;
-    --accent: #ccff00;
-    --accent-fg: #090b04;
-    --surface: #121509;
-    --olive: #6e8000;
-    --olive-dark: #586600;
-    --lime: #ccff00;
-    --coral: #ff3b3b;
-  }
-}
-
-@keyframes capsuleMarquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  --olive-dark: #3f4a08;
+  --danger: #f87171;
 }
 
 @keyframes moving-border {
@@ -49,35 +34,27 @@
   }
 }
 
-.capsule-track {
-  animation: capsuleMarquee 16s linear infinite;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .capsule-track {
-    animation: none;
-  }
-}
-
 @theme inline {
   --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
   --color-fg: var(--fg);
-  --color-muted: var(--muted);
+  --color-fg-secondary: var(--fg-secondary);
+  --color-muted: var(--fg-muted);
   --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
-  --color-surface: var(--surface);
   --color-olive: var(--olive);
-  --color-lime: var(--lime);
-  --color-coral: var(--coral);
-  --font-sans: var(--font-vazir), var(--font-geist-sans), sans-serif;
-  --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-jomhuria), var(--font-corgan), cursive, sans-serif;
-  --font-jomhuria: var(--font-jomhuria), cursive, sans-serif;
-  --font-persian: var(--font-vazir), sans-serif;
+  --color-olive-dark: var(--olive-dark);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-vazir), system-ui, sans-serif;
+  --font-persian: var(--font-vazir), system-ui, sans-serif;
+  --font-display: var(--font-jomhuria), var(--font-vazir), sans-serif;
   --font-orbitron: var(--font-orbitron), sans-serif;
-  --font-neopixel: var(--font-neopixel), monospace, sans-serif;
+  --font-mono: var(--font-ibm-mono), ui-monospace, monospace;
+
   --animate-moving-border: moving-border var(--mb-duration, 4s) linear infinite;
 }
 

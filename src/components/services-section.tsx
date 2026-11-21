@@ -1,234 +1,210 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft, Brain, Camera, GameController, Terminal, Wrench } from "@phosphor-icons/react";
 import { Reveal } from "./reveal";
-import { SparkleStar } from "./anime-avatars";
 import TopoBackground from "./topo-background";
-import { 
-  GameController, 
-  Camera, 
-  Terminal, 
-  Brain, 
-  Wrench, 
-  ArrowDownLeft, 
-  ArrowDownRight,
-  ShieldCheck
-} from "@phosphor-icons/react";
 
 const TIMELINE_STATIONS = [
   {
     step: "01",
     epoch: "2010 — 2015",
-    tag: "THE BOY IN THE TERMINAL",
-    title: "اتاق کودکی، یاهو و تخیل ابرقهرمانی",
-    desc: "زل زدن به صفحه مانیتور داداشم و یاد گرفتن تک‌تک حرکاتش. ساعت‌ها گشتن در یاهو، تمام کردن Need for Speed Most Wanted و ساختن دنیای خیالی ابرقهرمانی بن‌تن در خانه.",
+    title: "اتاق کودکی، یاهو و کنجکاوی بی‌پایان",
+    desc: "زل زدن به مانیتور برادر بزرگترم و یاد گرفتن تک‌تک حرکاتش. ساعت‌ها گشتن در یاهو، تمام کردن Need for Speed Most Wanted و ساختن دنیای خیالی قهرمان‌ها در خانه.",
     icon: GameController,
   },
   {
     step: "02",
     epoch: "2015 — 2018",
-    tag: "GRIT & THE FIELD",
     title: "مستطیل سبز فوتبال و آچار مکانیکی",
-    desc: "شاگرد اول همیشه مدرسه، ورود به فوتبال باشگاهی از کلاس پنجم و بعد آچار به دست گرفتن در مکانیکی. یاد گرفتن انضباط، استقامت فیزیکی و تسلیم نشدن زیر فشار.",
+    desc: "ورود به فوتبال باشگاهی از کلاس پنجم و بعد کار عملی در مکانیکی. یاد گرفتن انضباط، استقامت فیزیکی و تسلیم نشدن زیر فشار واقعی.",
     icon: Wrench,
   },
   {
     step: "03",
     epoch: "2018 — 2022",
-    tag: "VISUALS & MARKET FLOOR",
     title: "لنز دوربین و ۴ سال کف بازار مد",
-    desc: "شروع عکاسی و فیلم‌برداری از ۱۴ سالگی برای ثبت قشنگی‌های دنیا. ورود به فروشگاه پوشاک و ۴ سال مدیریت کامل ویترین، تولید محتوا، پیج و فروشندگی موفق؛ یادگیری روانشناسی خریدار و سلیقه بصری.",
+    desc: "شروع عکاسی و فیلم‌برداری از ۱۴ سالگی و چهار سال مدیریت کامل ویترین، تولید محتوا و فروشندگی؛ جایی که سلیقه بصری و روانشناسی مخاطب را از نزدیک شناختم.",
     icon: Camera,
   },
   {
     step: "04",
     epoch: "2022 — 2024",
-    tag: "NIGHT MARATHONS",
-    title: "ترمینال لینوکس، امنیت و هک تهاجمی",
-    desc: "کشف دنیای امنیت؛ جایی که می‌شد واقعاً یک قهرمان دیجیتال بود. دوره‌های سنگین، ترمینال آرچ لینوکس، و روزی ۱۰ تا ۱۲ ساعت مطالعه بی‌وقفه در سخت‌ترین شرایط کشور و دانشگاه.",
+    title: "ترمینال لینوکس، امنیت و مهندسی سیستم",
+    desc: "ورود جدی به دنیای امنیت سایبری، کار روزانه با آرچ لینوکس و روزی ۱۰ تا ۱۲ ساعت مطالعه و تمرین مستمر در علوم کامپیوتر و شبکه.",
     icon: Terminal,
   },
   {
     step: "05",
-    epoch: "2024 — NOW",
-    tag: "THE SHAPESHIFTER",
-    title: "تولد سازنده و ساختن بایمکس شخصی",
-    desc: "اضافه شدن AI مثل یک قدرت ماورایی بی‌پایان بود. حل مسائل واقعی از دل محدودیت‌ها (SubFarsi، دانی‌فون، ios-diag). مثل هیرو در Big Hero 6 که از هیچ بایمکس می‌سازد؛ بدون محدودیت در دنیای دیجیتال.",
+    epoch: "2024 — اکنون",
+    title: "از کشف ایراد تا ساختن سیستم‌های زنده",
+    desc: "تلفیق هوش مصنوعی، سخت‌افزار و توسعه نرم‌افزار برای حل مسائل واقعی از دل محدودیت‌ها؛ ساخت ابزارهایی که واقعاً کار می‌کنند و دستیار هوش مصنوعی شخصی.",
     icon: Brain,
   },
-];
+] as const;
 
 export function ServicesSection() {
   return (
-    <section
-      id="services"
-      className="relative overflow-hidden bg-[#090b04] text-white border-t border-[#1a220d]"
-    >
+    <section id="story" className="relative overflow-hidden border-t border-line bg-bg text-fg">
       <TopoBackground
         className="min-h-0 py-24 md:py-32"
         interval={0.22}
         terrainScale={1400}
-        speed={0.6}
+        speed={0.55}
         interactive
         labels
-        overlay={<div className="absolute inset-0 bg-[#090b04]/60 backdrop-blur-[2px]" />}
+        overlay={<div className="absolute inset-0 bg-bg/65 backdrop-blur-[1px]" />}
       >
-        <div className="relative z-10 mx-auto max-w-7xl px-6">
-          
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
           {/* Section Header */}
           <Reveal>
-            <div className="flex flex-col justify-between gap-6 pb-12 md:flex-row md:items-end border-b border-[#222810]">
+            <div className="flex flex-col justify-between gap-6 border-b border-line pb-8 md:flex-row md:items-end">
               <div>
-                <span dir="ltr" className="font-mono text-xs uppercase tracking-widest text-[#ccff00]">
-                  THE ORIGIN // STORY OF A BUILDER
-                </span>
-                <div className="flex items-center gap-4 mt-2">
-                  <h2 className="font-display text-5xl tracking-normal text-white md:text-7xl lg:text-8xl">
-                    ریشه‌ها، اراده و سیر تحول
-                  </h2>
-                  <SparkleStar className="h-8 w-8 animate-pulse text-[#ccff00] motion-reduce:animate-none" />
-                </div>
+                <p className="text-sm font-medium text-accent">مسیر و سبک کاری</p>
+                <h2 className="mt-2 font-display text-5xl tracking-normal text-fg md:text-7xl">
+                  ریشه‌ها، اراده و سیر تحول
+                </h2>
               </div>
 
-              <p className="max-w-md font-persian text-sm leading-relaxed text-[#9ca38f] md:text-right" dir="rtl">
-                من یک تخصص بسته نیستم؛ مثل بن‌تن توانایی تبدیل به هر ابزاری برای خلق نتیجه دارم. از درک عمیق سلیقه کاربر در کف بازار تا تزریق کد به لایه‌های زیرین لینوکس.
+              <p className="max-w-md text-sm leading-relaxed text-fg-secondary md:text-base">
+                در یک تخصص بسته متوقف نمی‌مانم؛ از درک سلیقه کاربر در کف بازار تا نوشتن کد در
+                لایه‌های زیرین لینوکس و سخت‌افزار.
               </p>
             </div>
           </Reveal>
 
-          {/* Interactive Story Bento Grid */}
-          <div className="relative mt-10 grid gap-6 lg:grid-cols-12">
-            
-            {/* Left Column: 5 Life Stations Timeline (7 cols) */}
-            <div className="lg:col-span-7 flex flex-col gap-4">
-              {TIMELINE_STATIONS.map((station, idx) => {
-                const Icon = station.icon;
-                return (
-                  <Reveal key={station.step} delay={idx * 0.08}>
-                    <div 
-                      className="group relative rounded-2xl border border-[#202911] bg-[#0c1106]/85 p-5 md:p-6 backdrop-blur-md transition-all duration-300 hover:border-[#ccff00]/60 hover:bg-[#121909]"
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <span 
-                            dir="ltr" 
-                            className="font-orbitron text-lg font-black text-[#ccff00]"
-                          >
-                            {station.step}
-                          </span>
-                          <span className="h-3 w-px bg-[#263314]" />
-                          <span 
-                            dir="ltr" 
-                            className="font-mono text-[10px] uppercase tracking-widest text-[#72805d]"
-                          >
-                            {station.epoch}{' // '}{station.tag}
-                          </span>
-                        </div>
-                        
-                        <div className="rounded-lg bg-[#18230b] p-2 text-[#ccff00] border border-[#2a3a14] group-hover:scale-110 transition-transform">
-                          <Icon className="h-4 w-4" />
-                        </div>
-                      </div>
+          {/* Editorial Asymmetric Layout */}
+          <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-12">
+            {/* Editorial Timeline List (Visual Subtraction: hairline dividers instead of 5 nested boxes) */}
+            <div className="lg:col-span-7">
+              <ol className="divide-y divide-line border-b border-line">
+                {TIMELINE_STATIONS.map((station, idx) => {
+                  const Icon = station.icon;
+                  return (
+                    <Reveal key={station.step} delay={idx * 0.06}>
+                      <li className="group py-6 first:pt-0">
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-3 text-xs text-muted">
+                            <span
+                              dir="ltr"
+                              className="font-mono text-sm font-semibold tabular-nums text-accent"
+                            >
+                              {station.step}
+                            </span>
+                            <span aria-hidden="true">·</span>
+                            <span dir="ltr" className="font-mono tabular-nums">
+                              {station.epoch}
+                            </span>
+                          </div>
 
-                      <h3 
-                        dir="rtl" 
-                        className="mt-3 font-persian text-base md:text-lg font-bold text-white group-hover:text-[#ccff00] transition-colors"
-                      >
-                        {station.title}
-                      </h3>
+                          <Icon
+                            size={18}
+                            className="text-muted transition-colors duration-150 group-hover:text-accent"
+                            aria-hidden="true"
+                          />
+                        </div>
 
-                      <p 
-                        dir="rtl" 
-                        className="mt-2 font-persian text-xs sm:text-sm leading-relaxed text-[#a6ada0]"
-                      >
-                        {station.desc}
-                      </p>
-                    </div>
-                  </Reveal>
-                );
-              })}
+                        <h3 className="mt-3 text-lg font-bold text-fg transition-colors duration-150 group-hover:text-accent">
+                          {station.title}
+                        </h3>
+
+                        <p className="mt-2 text-sm leading-relaxed text-fg-secondary">
+                          {station.desc}
+                        </p>
+                      </li>
+                    </Reveal>
+                  );
+                })}
+              </ol>
+
+              <div className="mt-6">
+                <Link
+                  href="/about"
+                  className="group inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-accent transition-opacity hover:opacity-90"
+                >
+                  <span>خواندن روایت کامل درباره من</span>
+                  <ArrowLeft
+                    size={16}
+                    weight="bold"
+                    aria-hidden="true"
+                    className="transition-transform duration-150 group-hover:-translate-x-1 motion-reduce:transition-none"
+                  />
+                </Link>
+              </div>
             </div>
 
-            {/* Right Column: Visual Artworks & Manifesto Cards (5 cols) */}
-            <div className="lg:col-span-5 flex flex-col gap-5">
-              
-              {/* Highlight Card 1: Dreamscape Artwork & Big Hero 6 Mindset */}
-              <Reveal delay={0.2}>
-                <div className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] bg-[#ccff00] p-6 text-[#090b04] shadow-2xl">
-                  <div className="flex items-center justify-between border-b border-[#090b04]/15 pb-4">
-                    <span dir="ltr" className="font-mono text-xs font-black uppercase tracking-wider text-[#090b04]">
-                      SHAPESHIFTER PROTOCOL
-                    </span>
-                    <ArrowDownLeft size={28} weight="bold" />
-                  </div>
-
-                  <div className="my-6">
-                    <p className="font-display text-3xl leading-snug tracking-normal text-[#090b04] md:text-4xl">
+            {/* Visual Artworks & Manifesto Column */}
+            <div className="flex flex-col gap-6 lg:col-span-5">
+              {/* Signature High-Contrast Lime Manifesto Card */}
+              <Reveal delay={0.12}>
+                <div className="group flex flex-col justify-between overflow-hidden rounded-2xl bg-accent p-6 text-accent-fg md:p-7">
+                  <div>
+                    <p className="text-xs font-bold tracking-wide text-accent-fg/75">
+                      فلسفه ساختن
+                    </p>
+                    <blockquote className="mt-4 font-display text-3xl leading-snug tracking-normal text-accent-fg md:text-4xl">
                       «کدنویسی فقط منطق و سینتکس نیست؛ هویت، اراده و زنده کردن رویاهاست.»
-                    </p>
-                    <p className="mt-2 font-mono text-[11px] font-bold uppercase tracking-widest text-[#090b04]/75">
-                      مثل هیرو در انیمیشن Big Hero 6
+                    </blockquote>
+                    <p className="mt-3 text-sm font-medium text-accent-fg/80">
+                      با الهام از هیرو در انیمیشن Big Hero 6
                     </p>
                   </div>
 
-                  <div className="relative h-44 w-full overflow-hidden rounded-xl border-2 border-[#090b04]/20 shadow-lg">
+                  <div className="relative mt-6 aspect-[16/10] w-full overflow-hidden rounded-xl border border-accent-fg/15 bg-bg">
                     <Image
                       src="/images/art-dreamscape.webp"
-                      alt="آدمی روی تپه کنار موج‌های رنگین"
+                      alt="تصویرسازی رویاپردازانه روی تپه کنار موج‌های رنگین"
                       fill
-                      sizes="(min-width: 1024px) 400px, 100vw"
-                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      referrerPolicy="no-referrer"
+                      sizes="(min-width: 1024px) 420px, 100vw"
+                      className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />
                   </div>
                 </div>
               </Reveal>
 
-              {/* Highlight Card 2: Retro Terminal & Cyber Culture */}
-              <Reveal delay={0.3}>
-                <div className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-[#2a3615] bg-[#0e1407]/90 p-6 text-white backdrop-blur-md">
-                  <div className="flex items-center justify-between border-b border-[#1f280f] pb-3">
-                    <div className="flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-[#ccff00] animate-pulse" />
-                      <span dir="ltr" className="font-mono text-[10px] tracking-widest text-[#ccff00] uppercase">
-                        RETRO LAB // NOSTALGIA
-                      </span>
-                    </div>
-                    <span dir="ltr" className="font-mono text-[10px] text-[#6e7b5b]">
-                      NFS MW // STRANGER THINGS
+              {/* Visual Culture & Influences Card */}
+              <Reveal delay={0.2}>
+                <div className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-surface/90 p-6 backdrop-blur-md">
+                  <div className="flex items-center justify-between gap-2 border-b border-line pb-3 text-xs text-muted">
+                    <span className="font-medium text-fg">الهام‌های بصری و نوستالژی</span>
+                    <span dir="ltr" className="font-mono">
+                      Synthwave · Retro Lab
                     </span>
                   </div>
 
-                  <p dir="rtl" className="mt-4 font-persian text-xs sm:text-sm leading-relaxed text-[#c3c8ba]">
-                    ترکیب موسیقی‌های سینت‌ویو دهه هشتادی، آدرنالین سرعت و هیجان نیدفوراسپید موست‌وانتد، و ساعت‌ها کد زدن در تاریکی اتاق به سبک مستر روبات.
+                  <p className="mt-4 text-sm leading-relaxed text-fg-secondary">
+                    ترکیب موسیقی‌های سینت‌ویو دهه هشتادی، هیجان Need for Speed Most Wanted و
+                    ساعت‌ها کدنویسی متمرکز در سکوت شب.
                   </p>
 
                   <div className="mt-5 grid grid-cols-2 gap-3">
-                    <div className="relative h-28 overflow-hidden rounded-xl border border-[#283515]">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-line bg-bg">
                       <Image
                         src="/images/art-stereogram.webp"
-                        alt="استریوگرام ریترو"
+                        alt="اثر گرافیکی استریوگرام ریترو"
                         fill
-                        sizes="200px"
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        referrerPolicy="no-referrer"
+                        sizes="(min-width: 1024px) 200px, 50vw"
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                       />
                     </div>
-                    <div className="relative h-28 overflow-hidden rounded-xl border border-[#283515]">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-line bg-bg">
                       <Image
                         src="/images/art-design.webp"
                         alt="پوستر تایپوگرافی پیکسلی"
                         fill
-                        sizes="200px"
-                        className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                        referrerPolicy="no-referrer"
+                        sizes="(min-width: 1024px) 200px, 50vw"
+                        className="object-cover object-center transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                       />
                     </div>
                   </div>
                 </div>
               </Reveal>
-
             </div>
-
           </div>
-
         </div>
       </TopoBackground>
     </section>

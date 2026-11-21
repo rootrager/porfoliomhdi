@@ -1,191 +1,188 @@
 "use client";
 
-import { Reveal } from "./reveal";
-import { 
-  PaperPlaneTilt, 
-  GithubLogo, 
-  EnvelopeSimple, 
-  Terminal, 
-  ArrowUpRight, 
-  CheckCircle,
-  ShieldCheck,
-  Radioactive
+import { useState } from "react";
+import Link from "next/link";
+import {
+  ArrowUpLeft,
+  Check,
+  Copy,
+  EnvelopeSimple,
+  GithubLogo,
+  PaperPlaneTilt,
 } from "@phosphor-icons/react";
+import { Reveal } from "./reveal";
+
+const EMAIL = "hello@mhdi.dev";
 
 export function ContactSection() {
-  const year = new Date().getFullYear();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
+    } catch {
+      /* clipboard API unavailable in restricted contexts */
+    }
+  };
 
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#070903] py-24 text-white md:py-32 border-t border-[#1a220d]"
+      className="relative overflow-hidden border-t border-line bg-bg pt-24 pb-12 text-fg md:pt-32"
     >
-      {/* Background Glow */}
-      <div className="pointer-events-none absolute -bottom-48 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-[#ccff00]/10 blur-[120px]" />
-      
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        
         <Reveal>
-          {/* Main Cockpit Super-Card */}
-          <div className="overflow-hidden rounded-[36px] border border-[#243013] bg-[#0c1006]/95 p-8 shadow-[0_0_50px_rgba(0,0,0,0.8)] md:p-14 backdrop-blur-md">
-            
-            {/* Top Status Monospace Bar */}
-            <div 
-              dir="ltr"
-              className="flex flex-wrap items-center justify-between gap-3 border-b border-[#1c240f] pb-5 font-mono text-[11px] text-[#717e5d]"
-            >
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ccff00] opacity-75 motion-reduce:hidden" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#ccff00]" />
-                </span>
-                <span className="text-[#ccff00] font-bold">TRANSMISSION_READY</span>
-                <span>{'// ENCRYPTION: TLS 1.3'}</span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <span>VPS: YTA87400905</span>
-                <span className="text-[#263314]">{'//'}</span>
-                <span>PRODUCTION ACTIVE</span>
-              </div>
-            </div>
-
-            <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-14">
-              
-              {/* Left Column: Heading & Value Proposition (7 cols) */}
-              <div className="lg:col-span-7 flex flex-col justify-between" dir="rtl">
+          <div className="rounded-3xl border border-line bg-surface p-8 md:p-14">
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+              {/* Editorial Value Proposition */}
+              <div className="flex flex-col justify-between lg:col-span-7">
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-widest text-[#ccff00]">
-                    [ ACT 05 // SECURE UPLINK ]
-                  </span>
-                  
-                  <h2 className="mt-3 font-display text-5xl tracking-normal text-white md:text-7xl lg:text-8xl">
+                  <p className="text-sm font-medium text-accent">شروع همکاری</p>
+
+                  <h2 className="mt-2 font-display text-5xl tracking-normal text-fg md:text-7xl">
                     خط مستقیم ارتباط و شروع کار
                   </h2>
 
-                  <p className="mt-4 font-persian text-base leading-relaxed text-[#c3c8ba] md:text-lg">
-                    بدون فرم‌های سازمانی طولانی و خسته‌کننده. اگر مسئله پیچیده‌ای داری که نیاز به حل در لایه صفر دارد، یا محصولی که می‌خواهی به دور از شعار و کلیشه به واقعیت تبدیل شود، پیام بگذار.
+                  <p className="mt-4 max-w-xl text-base leading-relaxed text-fg-secondary md:text-lg">
+                    بدون فرم‌های طولانی و تشریفات اضافه. اگر مسئله پیچیده‌ای داری که نیاز به حل
+                    دقیق دارد یا محصولی که می‌خواهی واقعی و قابل اتکا ساخته شود، مستقیم پیام بده.
                   </p>
                 </div>
 
-                {/* Direct Action Channels */}
-                <div className="mt-8 grid gap-3 sm:grid-cols-2" dir="ltr">
-                  
-                  {/* Telegram Card */}
+                {/* Quiet Availability & Core Stack Metadata */}
+                <div className="mt-8 border-t border-line pt-6 text-sm text-fg-secondary">
+                  <p>تهران · دسترس‌پذیر برای همکاری ریموت و پروژه‌های تخصصی</p>
+                  <p dir="ltr" className="mt-2 font-mono text-xs text-muted">
+                    Python · Next.js · Reverse Engineering · Multi-Agent RAG
+                  </p>
+                </div>
+              </div>
+
+              {/* Direct Contact Channels */}
+              <div className="flex flex-col justify-between gap-4 lg:col-span-5">
+                {/* Email Direct Card */}
+                <div className="rounded-2xl border border-line bg-bg p-5">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-xs font-medium text-muted">ایمیل مستقیم</span>
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      className="inline-flex min-h-[36px] cursor-pointer items-center gap-1.5 rounded-lg px-2.5 text-xs font-medium text-fg-secondary transition-colors duration-150 hover:bg-surface hover:text-accent"
+                    >
+                      {copied ? (
+                        <>
+                          <Check size={14} weight="bold" className="text-accent" />
+                          <span className="text-accent">کپی شد</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy size={14} />
+                          <span>کپی ایمیل</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  <p dir="ltr" className="mt-2 font-mono text-base font-semibold text-fg">
+                    {EMAIL}
+                  </p>
+
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    className="mt-4 flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-accent-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
+                  >
+                    <EnvelopeSimple size={18} weight="bold" aria-hidden="true" />
+                    <span>ارسال ایمیل مستقیم</span>
+                  </a>
+                </div>
+
+                {/* Telegram & GitHub Direct Links */}
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                   <a
                     href="https://t.me/rootrager"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between rounded-2xl border border-[#232f12] bg-[#111709] p-4 transition-all duration-200 hover:border-[#ccff00] hover:bg-[#16200c]"
+                    className="group flex min-h-[64px] items-center justify-between rounded-2xl border border-line bg-bg px-5 py-3.5 transition-colors duration-150 hover:border-accent"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="rounded-xl bg-[#1c290e] p-2.5 text-[#ccff00] group-hover:scale-110 transition-transform">
-                        <PaperPlaneTilt className="h-5 w-5" />
-                      </div>
+                      <PaperPlaneTilt size={20} className="text-accent" aria-hidden="true" />
                       <div>
-                        <div className="font-mono text-xs font-bold text-white">TELEGRAM DIRECT</div>
-                        <div className="font-mono text-[11px] text-[#7d8b69]">@rootrager // FAST</div>
+                        <div className="text-sm font-semibold text-fg">تلگرام مستقیم</div>
+                        <div dir="ltr" className="font-mono text-xs text-muted">
+                          @rootrager
+                        </div>
                       </div>
                     </div>
-                    <ArrowUpRight className="h-4 w-4 text-[#7d8b69] group-hover:text-[#ccff00] transition-colors" />
+                    <ArrowUpLeft
+                      size={18}
+                      aria-hidden="true"
+                      className="text-muted transition-colors duration-150 group-hover:text-accent"
+                    />
                   </a>
 
-                  {/* GitHub Card */}
                   <a
                     href="https://github.com/rootrager"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between rounded-2xl border border-[#232f12] bg-[#111709] p-4 transition-all duration-200 hover:border-[#ccff00] hover:bg-[#16200c]"
+                    className="group flex min-h-[64px] items-center justify-between rounded-2xl border border-line bg-bg px-5 py-3.5 transition-colors duration-150 hover:border-accent"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="rounded-xl bg-[#1c290e] p-2.5 text-[#ccff00] group-hover:scale-110 transition-transform">
-                        <GithubLogo className="h-5 w-5" />
-                      </div>
+                      <GithubLogo size={20} className="text-accent" aria-hidden="true" />
                       <div>
-                        <div className="font-mono text-xs font-bold text-white">GITHUB PROFILE</div>
-                        <div className="font-mono text-[11px] text-[#7d8b69]">rootrager // REPOS</div>
+                        <div className="text-sm font-semibold text-fg">مخازن گیت‌هاب</div>
+                        <div dir="ltr" className="font-mono text-xs text-muted">
+                          github.com/rootrager
+                        </div>
                       </div>
                     </div>
-                    <ArrowUpRight className="h-4 w-4 text-[#7d8b69] group-hover:text-[#ccff00] transition-colors" />
-                  </a>
-
-                </div>
-              </div>
-
-              {/* Right Column: Terminal Live Response Box (5 cols) */}
-              <div className="lg:col-span-5 flex flex-col justify-center">
-                <div 
-                  dir="ltr"
-                  className="rounded-2xl border border-[#243013] bg-[#070a03] p-5 font-mono text-xs shadow-2xl text-[#a0ad8c]"
-                >
-                  <div className="flex items-center justify-between border-b border-[#18200d] pb-3 mb-4">
-                    <div className="flex items-center gap-1.5">
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#f43f5e]/80" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#facc15]/80" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#22c55e]/80" />
-                    </div>
-                    <span className="text-[10px] text-[#556142]">bash - interactive session</span>
-                  </div>
-
-                  <div className="space-y-2 text-[11px]">
-                    <div className="text-[#ccff00]">
-                      $ curl -s https://mhdi.dev/api/status | jq .
-                    </div>
-                    <div className="text-white">
-                      &#123;
-                    </div>
-                    <div className="ps-4">
-                      &quot;status&quot;: <span className="text-[#ccff00]">&quot;OPEN_FOR_CONTRACTS&quot;</span>,
-                    </div>
-                    <div className="ps-4">
-                      &quot;location&quot;: &quot;Tehran // Remote Friendly&quot;,
-                    </div>
-                    <div className="ps-4">
-                      &quot;core_stack&quot;: [
-                    </div>
-                    <div className="ps-8 text-[#d4ff00]">
-                      &quot;Python 3.12&quot;, &quot;Next.js 16&quot;, &quot;Reverse Engineering&quot;, &quot;Multi-Agent RAG&quot;
-                    </div>
-                    <div className="ps-4">
-                      ],
-                    </div>
-                    <div className="ps-4">
-                      &quot;direct_dispatch&quot;: <span className="text-[#38bdf8]">&quot;hello@mhdi.dev&quot;</span>
-                    </div>
-                    <div className="text-white">
-                      &#125;
-                    </div>
-                  </div>
-
-                  <a
-                    href="mailto:hello@mhdi.dev"
-                    className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#ccff00] py-3 text-center font-mono text-xs font-bold text-[#090b04] transition-all hover:bg-[#d6ff33] active:scale-[0.98]"
-                  >
-                    <EnvelopeSimple className="h-4 w-4" />
-                    <span>DISPATCH EMAIL DIRECTLY</span>
+                    <ArrowUpLeft
+                      size={18}
+                      aria-hidden="true"
+                      className="text-muted transition-colors duration-150 group-hover:text-accent"
+                    />
                   </a>
                 </div>
               </div>
-
             </div>
-
           </div>
         </Reveal>
 
-        {/* Minimal Footer */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[#18200d] pt-6 font-mono text-[11px] text-[#6d795b] sm:flex-row">
-          <div>
-            © {year} MHDI. ALL RIGHTS RESERVED // BUILT TO OUTLAST
-          </div>
-          
-          <div className="flex items-center gap-6">
-            <a href="#work" className="hover:text-[#ccff00] transition-colors">PROJECTS</a>
-            <a href="#services" className="hover:text-[#ccff00] transition-colors">STORY</a>
-            <a href="https://github.com/rootrager" target="_blank" rel="noopener noreferrer" className="hover:text-[#ccff00] transition-colors">GITHUB</a>
-            <a href="https://t.me/rootrager" target="_blank" rel="noopener noreferrer" className="hover:text-[#ccff00] transition-colors">TELEGRAM</a>
-          </div>
-        </div>
+        {/* Quiet Semantic Footer */}
+        <footer className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line pt-6 text-xs text-muted sm:flex-row">
+          <p dir="ltr" className="font-mono">
+            © 2026 MHDI
+          </p>
 
+          <nav aria-label="لینک‌های فوتر" className="flex flex-wrap items-center gap-6">
+            <Link href="/#work" className="transition-colors hover:text-fg">
+              پروژه‌ها
+            </Link>
+            <Link href="/#story" className="transition-colors hover:text-fg">
+              مسیر من
+            </Link>
+            <Link href="/about" className="transition-colors hover:text-fg">
+              درباره من
+            </Link>
+            <a
+              href="https://github.com/rootrager"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-fg"
+            >
+              گیت‌هاب
+            </a>
+            <a
+              href="https://t.me/rootrager"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-fg"
+            >
+              تلگرام
+            </a>
+          </nav>
+        </footer>
       </div>
     </section>
   );

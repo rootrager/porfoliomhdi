@@ -2,19 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { List, X } from "@phosphor-icons/react";
-import { SparkleStar } from "./anime-avatars";
+import { List, Sparkle, X } from "@phosphor-icons/react";
 
-const links = [
-  { href: "/#work", label: "چه کارهایی می‌کنم" },
-  { href: "/#services", label: "سبک کاری من" },
+const NAV_LINKS = [
+  { href: "/#work", label: "پروژه‌ها" },
+  { href: "/#story", label: "مسیر من" },
   { href: "/about", label: "درباره من" },
 ];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
-  // Escape key closes the menu, and the page behind it is not scrollable
   useEffect(() => {
     if (!open) return;
 
@@ -33,56 +31,66 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#222810] bg-[#090b04]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+    <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-8 px-6">
+        {/* Zone 1: Brand wordmark */}
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="flex items-center gap-2 font-display text-2xl font-bold tracking-wider text-white"
+          className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap font-display text-3xl tracking-normal text-fg transition-colors hover:text-accent"
         >
-          <SparkleStar className="h-5 w-5 text-[#ccff00]" />
+          <Sparkle size={18} weight="fill" className="text-accent" aria-hidden="true" />
           <span>مهدی</span>
         </Link>
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
+
+        {/* Zone 2: Clean single-line navigation links */}
+        <nav aria-label="ناوبری اصلی" className="hidden items-center gap-8 md:flex">
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-zinc-300 transition-colors hover:text-[#ccff00]"
+              className="shrink-0 whitespace-nowrap text-sm font-medium text-fg-secondary transition-colors duration-150 hover:text-fg"
             >
               {link.label}
             </Link>
           ))}
+        </nav>
+
+        {/* Zone 3: Single primary action */}
+        <div className="hidden shrink-0 items-center md:flex">
           <Link
             href="/#contact"
-            className="rounded-full bg-[#ccff00] px-5 py-2 font-display text-lg font-bold text-[#090b04] transition-all hover:brightness-110 active:scale-[0.98]"
+            className="shrink-0 whitespace-nowrap rounded-full bg-accent px-5 py-2 text-sm font-semibold text-accent-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
           >
-            ثبت سفارش
+            شروع همکاری
           </Link>
-        </nav>
+        </div>
+
         <button
           type="button"
           aria-label={open ? "بستن منو" : "باز کردن منو"}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="rounded-md p-2 text-white md:hidden"
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-fg transition-colors hover:bg-surface md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={22} weight="bold" /> : <List size={22} weight="bold" />}
         </button>
       </div>
+
       {open ? (
         <nav
           id="mobile-nav"
-          className="border-t border-[#222810] bg-[#090b04] px-6 py-5 md:hidden"
+          aria-label="منوی موبایل"
+          className="border-t border-line bg-bg px-6 py-5 md:hidden"
         >
-          <div className="flex flex-col gap-4">
-            {links.map((link) => (
+          <div className="flex flex-col gap-2">
+            {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-base font-medium text-zinc-300 hover:text-[#ccff00]"
+                className="flex min-h-[44px] items-center text-base font-medium text-fg-secondary transition-colors hover:text-accent"
               >
                 {link.label}
               </Link>
@@ -90,9 +98,9 @@ export function SiteHeader() {
             <Link
               href="/#contact"
               onClick={() => setOpen(false)}
-              className="rounded-full bg-[#ccff00] px-4 py-2.5 text-center font-display text-lg font-bold text-[#090b04]"
+              className="mt-2 flex min-h-[44px] items-center justify-center rounded-full bg-accent px-5 text-sm font-semibold text-accent-fg"
             >
-              ثبت سفارش
+              شروع همکاری
             </Link>
           </div>
         </nav>
